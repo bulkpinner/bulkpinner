@@ -19,13 +19,17 @@
  * Pin preview component styling
  */
 .preview-container {
-  position: relative;
-  background: $colour-white;
-  padding: 10px;
+  padding: 5px;
   margin-top: 30px;
+  max-width: 300px;
+
+  .preview-inner-container {
+    position: relative;
+    background: $colour-white;
+    padding: 10px;
+  }
 
   .preview-image-container {
-    max-width: 255px;
     max-height: 250px;
     width: 100%;
     height: 100%;

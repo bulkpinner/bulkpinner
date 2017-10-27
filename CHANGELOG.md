@@ -1,8 +1,30 @@
-0.1.1 Added error tracking
+# 0.2.0
 
-Included Bugsnag, which will hopefully keep me informed of any errors, and also updated Google Analytics tracking code
+**Bug Fixes**
 
-0.1.0 Beta release
+* Image previews weren't displaying correctly
+* Spacing between image previews was inconsistent
+* Removed left over console.log debug code
+
+**Improvements**
+
+* Removed the need for jQuery. Using a smaller ajax library now
+* Added icon for Authorize button
+* Added Fork me on GitHub ribbon
+* Added Clear completed and clear all buttons
+* Added fancier link hover animation
+* Added hover effect for Authorize and Change Images buttons. I don't think it will stay though because I'm not a big fan of it
+* Added various structured data and Google Analytics related code
+
+# 0.1.1
+
+Added error tracking
+
+* Included Bugsnag, which will hopefully keep me informed of any errors, and also updated Google Analytics tracking code
+
+# 0.1.0
+
+Beta release
 
 The initial version of the application. Allows people to select images from their device, add a note and then select which Pinterest board they should be sent to.
 

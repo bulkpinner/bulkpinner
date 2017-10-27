@@ -1,0 +1,12 @@
+{
+  "extends": "stylelint-config-sass-guidelines",
+  "rules": {
+    "color-hex-case": "upper",
+    "order/properties-alphabetical-order": {
+      "disableFix": true
+    },
+    "max-nesting-depth": 3,
+    "color-hex-length": "long",
+    "selector-class-pattern": "^[a-z0-9]*_?_?[a-z0-9]+(-[a-z0-9]+)*$"
+  }
+}

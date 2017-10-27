@@ -18,6 +18,7 @@ import API from 'services/API';
 import DataStore from 'services/DataStore';
 import PinPreview from 'PinPreview';
 import ClearPreviews from 'ClearPreviews';
+import Analytics from 'services/Analytics';
 
 /**
  * Class BulkPinner
@@ -306,6 +307,7 @@ export default class BulkPinner {
             .then(response => {
                 preview.dataset.pinned = true;
                 preview.classList.toggle('sending', false);
+                Analytics.PinCreated();
             });
         }
     }

@@ -16,29 +16,14 @@
  */
 
 /**
- * Buttons styling
+ * Class Analytics
  */
+export default class Analytics {
 
-.select-files-label,
-.authenticate-button {
-  @include button-white();
-
-  .icofont {
-    border: 2px solid transparent;
-    border-radius: 100%;
-    padding: 2px 5px 3px;
-    transition: border 150ms linear;
-  }
-
-  &:hover {
-    .icofont {
-      border: 2px solid $colour-pinterest-red;
+    /**
+     * Perform analytics tracking actions relative to a pin being created
+     */
+    static PinCreated() {
+        gtag('event', 'pin_created', {'pins': 1});
     }
-  }
-}
-
-.select-files-label {
-  .icofont {
-    margin-right: 5px;
-  }
 }

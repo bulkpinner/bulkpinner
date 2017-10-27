@@ -48,6 +48,7 @@ gulp.task('js', () => {
                 }]
             }
         }, webpack))
+        .pipe(plugins.uglify())
         .pipe(plugins.concat('scripts.js'))
         .pipe(gulp.dest('dist/js'));
 });
@@ -58,7 +59,7 @@ gulp.task('html', () => {
 });
 
 gulp.task('other', () => {
-    return gulp.src(['README.md', 'CHANGELOG.md'])
+    return gulp.src(['CHANGELOG.md'])
         .pipe(gulp.dest('dist'))
 });
 

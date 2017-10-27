@@ -1,3 +1,14 @@
+# 0.2.1
+
+**Actually removed jQuery from being downloaded**
+
+Whilst the previous release just a few minutes ago removed the need for jQuery, I forgot to actually
+remove the script tags that was downloading the library.
+
+**Minified the JS**
+
+Took this opportunity to also minify the main JS file, so it's much, much smaller now
+
 # 0.2.0
 
 **Bug Fixes**

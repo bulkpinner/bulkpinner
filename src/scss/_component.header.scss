@@ -1,0 +1,62 @@
+/* Bulk Pinner - Create multiple pins in your Pinterest boards at once
+ * Copyright (C) 2017 Luke Denton
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+ * Page header component styling
+ */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: $colour-pinterest-red;
+  color: $colour-white;
+  max-height: 10vh;
+  height: 100%;
+  padding: 0 30px;
+  text-align: center;
+  transition: max-height 300ms linear, justify-content 300ms linear;
+  flex: 0 0 auto;
+
+  &.large {
+    max-height: 60vh;
+    justify-content: center;
+    flex-direction: column;
+    transition: max-height 300ms linear, justify-content 300ms linear;
+
+    .application-name {
+      margin-bottom: 20px;
+    }
+
+    .authentication-container,
+    .image-select-container {
+      padding-top: 100px;
+    }
+
+    .description {
+      display: block;
+    }
+  }
+
+  .authentication-container,
+  .image-select-container {
+    text-align: center;
+  }
+
+  .description {
+    display: none;
+  }
+}

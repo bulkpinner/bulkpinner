@@ -1,0 +1,65 @@
+/* Bulk Pinner - Create multiple pins in your Pinterest boards at once
+ * Copyright (C) 2017 Luke Denton
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+ * Button mixin
+ *
+ * @param string $size The size of the button. Options are 'large' or 'small'. Default is 'large'
+ */
+@mixin button($size) {
+  border: 0;
+  display: inline-block;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+  text-align: center;
+  font-family: $font-heading;
+
+  @if $size == 'small' {
+    padding: 5px 10px;
+    font-size: 15px;
+    //border-radius: 3px;
+  } @else {
+    padding: 10px 30px;
+    font-size: 25px;
+    //border-radius: 5px;
+  }
+}
+
+@mixin button-default($size: 'large') {
+  @include button($size);
+  background-color: $colour-white;
+  color: $colour-black;
+}
+
+@mixin button-white($size: 'large') {
+  @include button($size);
+  background-color: $colour-white;
+  color: $colour-pinterest-red;
+}
+
+@mixin button-red($size: 'large') {
+  @include button($size);
+  background-color: $colour-pinterest-red;
+  color: $colour-white;
+}
+
+@mixin button-blue($size: 'large') {
+  @include button($size);
+  background-color: $colour-blue;
+  color: $colour-white;
+}

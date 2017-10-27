@@ -1,0 +1,109 @@
+/* Bulk Pinner - Create multiple pins in your Pinterest boards at once
+ * Copyright (C) 2017 Luke Denton
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+ * Pin preview component styling
+ */
+.preview-container {
+  position: relative;
+  background: $colour-white;
+  padding: 10px;
+  margin-top: 30px;
+
+  .preview-image-container {
+    max-width: 255px;
+    max-height: 250px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background: url('../img/loader.svg') center center no-repeat;
+
+    img {
+      visibility: hidden;
+      width: 100%;
+
+      &.loaded {
+        visibility: visible;
+      }
+    }
+  }
+
+  .board-selection {
+    padding: 5px 0 0;
+  }
+
+  .note-container {
+    padding: 5px 0;
+
+    .note {
+      &.invalid {
+        border: 1px solid $colour-pinterest-red;
+
+        &:focus,
+        &:active {
+          outline-color: $colour-pinterest-red;
+        }
+      }
+    }
+  }
+
+  .image-uploading-container {
+    display: none;
+  }
+
+  &.sending {
+    .image-uploading-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(255,255,255,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .loading-animation {
+        animation: rotate40 1s infinite step-end;
+        font-size: 50px;
+        color: $colour-pinterest-red;
+      }
+    }
+  }
+
+  .uploaded-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    color: $colour-green;
+    transition: font-size 100ms linear;
+    width: 30px;
+    height: 30px;
+  }
+
+  &[data-pinned] {
+    .uploaded-icon {
+      font-size: 30px;
+    }
+  }
+}

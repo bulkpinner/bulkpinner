@@ -21,6 +21,7 @@ import API from 'services/API';
 import DataStore from 'services/DataStore';
 import PinPreview from 'PinPreview';
 import ErrorUtil from 'services/ErrorUtil';
+import Analytics from 'services/Analytics';
 
 /**
  * Class Application
@@ -320,16 +321,12 @@ export default class Application {
                     Analytics.PinCreated();
                 })
                 .catch(err => {
-                    preview.classList.toggle('sending', false);
-                    preview.dataset.pinError = true;
-
                     ErrorUtil.Log(new Error('Create Pin promise rejected'), {
                         metaData: {
                             'error': err
                         },
                         severity: 'error'
                     });
-
                 });
             } catch (exception) {
                 ErrorUtil.Log(new Error('Exception thrown from CreatePin function'), {

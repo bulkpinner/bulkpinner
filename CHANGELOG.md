@@ -1,3 +1,9 @@
+# 0.2.3
+
+*Bug fixes*
+
+* Removed the error reporting as it had the potential to report false positives. Will need some further work
+
 # 0.2.2
 
 *Bug fixes*

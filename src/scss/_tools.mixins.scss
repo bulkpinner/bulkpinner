@@ -16,15 +16,15 @@
  */
 
 /**
- * Colour variables
+ * Utility mixins that don't warrant a file to themselves
  */
-$colour-pinterest-red: #BD081C;
-$colour-white: #FFFFFF;
-$colour-soft-white: #F2F2F2;
-$colour-grey: #BBBBBB;
-$colour-mid-grey: #DDDDDD;
-$colour-black: #222222;
-$colour-blue: #0074D9;
-$colour-success: #2ECC40;
-$colour-warning: #FF851B;
-$colour-error: #FF4136;
+
+@mixin upload-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0;
+  transition: font-size 100ms linear;
+  width: 30px;
+  height: 30px;
+}

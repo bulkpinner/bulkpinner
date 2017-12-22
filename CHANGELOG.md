@@ -1,3 +1,12 @@
+# 0.2.2
+
+*Bug fixes*
+
+* If there was an error sending the image to Pinterest, that error wasn't being handled, it is now
+* The Send all images to board drop down select now resets when clicking Clear Completed or Clear All
+* The application will now actually check if some images were selected before 'transforming' into the pin preview view
+* Clicking refresh board won't add the 'blank' board option into the select drop down
+
 # 0.2.1
 
 **Actually removed jQuery from being downloaded**

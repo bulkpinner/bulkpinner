@@ -81,5 +81,16 @@ export default class ClearPreviews {
             document.querySelector('.label-text').innerText = 'Choose Images';
             document.querySelector('.preview-pins-container').classList.toggle('hidden', true);
         }
+
+        this.resetSendAllToBoard();
+    }
+
+    /**
+     * Reset the selected value in the Send all to board drop down
+     *
+     * @returns {null}
+     */
+    resetSendAllToBoard() {
+        document.querySelector("#send-all-to-board").value = "";
     }
 }

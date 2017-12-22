@@ -16,15 +16,23 @@
  */
 
 /**
- * Colour variables
+ * Class ErrorUtil
+ *
+ * Interface for abstracting the error reporting service
  */
-$colour-pinterest-red: #BD081C;
-$colour-white: #FFFFFF;
-$colour-soft-white: #F2F2F2;
-$colour-grey: #BBBBBB;
-$colour-mid-grey: #DDDDDD;
-$colour-black: #222222;
-$colour-blue: #0074D9;
-$colour-success: #2ECC40;
-$colour-warning: #FF851B;
-$colour-error: #FF4136;
+export default class ErrorUtil {
+
+    /**
+     * Log an error to the bug tracking system
+     *
+     * @param {Error}  error   A description of the error
+     * @param {Object} options Extra details of the error
+     *
+     * @returns {null}
+     */
+    static Log(error, options) {
+        debugger;
+        Bugsnag.notifyException(error, options);
+    }
+
+}

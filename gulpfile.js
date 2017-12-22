@@ -42,13 +42,14 @@ gulp.task('js', () => {
                     path.resolve('./node_modules')
                 ]
             },
+            devtool: 'inline-source-map',
             module: {
                 loaders: [{
                     loader: 'babel-loader'
                 }]
             }
         }, webpack))
-        .pipe(plugins.uglify())
+        .pipe(plugins.if(!args.dev, plugins.uglify()))
         .pipe(plugins.concat('scripts.js'))
         .pipe(gulp.dest('dist/js'));
 });

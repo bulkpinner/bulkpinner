@@ -14,6 +14,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import BulkPinner from 'BulkPinner';
 
-const bulkPinner = new BulkPinner();
+import Authorization from 'views/Authorization';
+import Application from 'views/Application';
+import API from 'services/API';
+import CustomEvent from 'services/CustomEvent';
+
+// Create instances of application classes
+new Authorization();
+new Application();
+
+// Determine if used is logged in and publish appropriate status
+if (!API.IsAuthenticated()) {
+    CustomEvent.trigger('user-not-authenticated');
+} else {
+    CustomEvent.trigger('user-authenticated');
+}
+

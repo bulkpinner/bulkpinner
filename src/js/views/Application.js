@@ -37,6 +37,7 @@ export default class Application {
         this.sendToPinterestButton = document.querySelector('.send-to-pinterest');
         this.sendAllToBoardSelect = document.getElementById('send-all-to-board');
         this.fileUploadInput = document.getElementById("fileToUpload");
+        this.modalOverlay = document.querySelector('.modal-overlay');
 
         // Wait until the user is authenticated before showing the main application interface
         CustomEvent.on('user-authenticated', () => {
@@ -103,6 +104,20 @@ export default class Application {
         });
 
         this.fileUploadInput.onchange = e => this.handleImagesSelected(e);
+
+        document.querySelector('.privacy-policy-link').addEventListener('click', e => {
+            this.showPrivacyPolicy();
+        });
+
+        document.querySelector('.modal-overlay').addEventListener('click', e => {
+            if (e.target.classList.contains('modal-overlay')) {
+                this.hidePrivacyPolicy();
+            }
+        });
+
+        document.querySelector('.modal-close .close').addEventListener('click', e => {
+            this.hidePrivacyPolicy();
+        });
 
         // Prepare the preview pin template with names of boards to pin to
         this.loadBoards().then(boards => {
@@ -337,5 +352,23 @@ export default class Application {
                 });
             }
         }
+    }
+
+    /**
+     * Display the privacy policy modal
+     *
+     * @returns {null}
+     */
+    showPrivacyPolicy() {
+        this.modalOverlay.classList.remove('hidden');
+    }
+
+    /**
+     * Hide the privacy policy modal
+     *
+     * @returns {null}
+     */
+    hidePrivacyPolicy() {
+        this.modalOverlay.classList.add('hidden');
     }
 }

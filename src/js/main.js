@@ -31,3 +31,7 @@ if (!API.IsAuthenticated()) {
     CustomEvent.trigger('user-authenticated');
 }
 
+if (window.location.origin !== 'https://bulkpinner.github.io') {
+    Bugsnag.releaseStage = 'development';
+    Bugsnag.notifyReleaseStages = ['production', 'staging'];
+}

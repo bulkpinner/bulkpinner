@@ -23,4 +23,10 @@ footer {
   flex: 0 0 auto;
   padding: 0 30px;
   background-color: $colour-mid-grey;
+
+  .links-container {
+    display: flex;
+    justify-content: space-between;
+    flex: 0 0 220px;
+  }
 }

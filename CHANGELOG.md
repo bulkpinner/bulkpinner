@@ -1,16 +1,22 @@
+# 0.2.5
+
+**Privacy Policy**
+
+Added a privacy policy for Bulk Pinner 
+
 # 0.2.4
 
-*Version bump*
+**Version bump**
 
 # 0.2.3
 
-*Bug fixes*
+**Bug fixes**
 
 * Removed the error reporting as it had the potential to report false positives. Will need some further work
 
 # 0.2.2
 
-*Bug fixes*
+**Bug fixes**
 
 * If there was an error sending the image to Pinterest, that error wasn't being handled, it is now
 * The Send all images to board drop down select now resets when clicking Clear Completed or Clear All

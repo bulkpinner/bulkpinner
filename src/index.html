@@ -120,8 +120,13 @@
   </div>
 </section>
 <footer>
-  <div class="version" itemprop="softwareVersion">
-    <a href="https://github.com/bulkpinner/bulkpinner/blob/master/CHANGELOG.md" target="_blank">Version 0.2.4</a>
+  <div class="links-container">
+    <div class="version" itemprop="softwareVersion">
+      <a href="https://github.com/bulkpinner/bulkpinner/blob/master/CHANGELOG.md" target="_blank">Version 0.2.5</a>
+    </div>
+    <div class="privacy-policy-link-container">
+      <a href="#" class="privacy-policy-link">Privacy Policy</a>
+    </div>
   </div>
   <div class="contact">
     Suggestions or issues? <a href="mailto:bulkpinner@gmail.com">Click here to email me</a> or open a <a href="https://github.com/bulkpinner/bulkpinner/issues">GitHub Issue</a>
@@ -131,6 +136,56 @@
     Created by <span itemprop="name">Luke Denton</span>
   </div>
 </footer>
+
+<div class="modal-overlay hidden">
+  <div class="privacy-policy-modal">
+    <div class="modal-header">
+      <div class="modal-title">
+        <h1>Privacy Policy</h1>
+      </div>
+      <div class="modal-close">
+        <a href="#" class="close"><i class="icofont icofont-close"></i></a>
+      </div>
+    </div>
+    <div class="modal-content">
+      <p>
+        Bulk Pinner does not store any users’ data. When a user authenticates the application to interact with Pinterest,
+        the authentication token is stored on the users computer, in their browser to be exact. If the user uses Bulk Pinner
+        again in the future, that token will be read and re-used so that the user doesn’t have to authenticate the app every
+        time they visit. If the user visits from another computer or using another browser on the same computer, they will
+        need to authenticate again, because the authentication token is only stored in the browser that they access Bulk Pinner from.
+      </p>
+      <p>
+        The image, note and link that the user specifies when clicking the Pin button gets sent straight to Pinterest.
+        There are no third party servers that could peek at the data.
+      </p>
+      <p>
+        When a pin is created in Bulk Pinner, there is an event that is sent to Google Analytics. This is purely an
+        indication of a user using the application, and doesn’t have any identifiable data associated with it. This
+        is the only custom event tracking that is occuring on Bulk Pinner.
+      </p>
+      <p>
+        Third party vendors, including Google, use cookies to serve ads based on a user's prior visits to this,
+        and other websites. Google's use of advertising cookies enables it and its partners to serve ads to users
+        based on the sites the user visits on the Internet
+      </p>
+      <p>
+        Users may opt out of personalized advertising by visiting Ads Settings.
+      </p>
+      <p>
+        Google analytics is attached to the site, tracking user visits in order to gauge user interest.
+      </p>
+      <p>
+        Bugsnag is also attached to the site, tracking errors that occur on the site. It doesn’t capture any personal
+        information, only information regarding a specific error, if one occurs.
+      </p>
+      <p>
+        I built Bulk Pinner as an extension to Pinterest. In no way could it replace using Pinterests’
+        own website and mobile applications.
+      </p>
+    </div>
+  </div>
+</div>
 
 <template id="preview-template">
   <div class="preview-container">

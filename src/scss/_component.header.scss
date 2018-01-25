@@ -25,7 +25,7 @@
   background-color: $colour-pinterest-red;
   color: $colour-white;
   max-height: 10vh;
-  height: 100%;
+  height: 100vh; // Firefox doesn't set the height according to the viewport units, so need to force the height, so that max-height can be enforced
   padding: 0 30px;
   text-align: center;
   transition: max-height 300ms linear, justify-content 300ms linear;

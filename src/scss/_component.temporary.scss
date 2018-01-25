@@ -1,0 +1,27 @@
+/**
+ * These styles will be removed once the application is approved by Pinterest, and the note about it on the
+ * homepage is removed
+ */
+
+.page-header {
+  .footnote {
+    display: none;
+  }
+
+  &.large {
+    .footnote {
+      display: block;
+      font-size: 0.7em;
+      padding-top: 70px;
+      max-width: 50%;
+      margin: 0 auto;
+      line-height: 1.2em;
+      letter-spacing: 1px;
+
+      a {
+        color: $colour-white;
+        border-bottom: 1px solid $colour-white;
+      }
+    }
+  }
+}

@@ -1,0 +1,81 @@
+/* Bulk Pinner - Create multiple pins in your Pinterest boards at once
+ * Copyright (C) 2017 Luke Denton
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+ * Table element styling
+ */
+
+table {
+  position: relative;
+  border-collapse: collapse;
+  white-space: nowrap;
+  font-size: 13px;
+  background-color: unquote("rgb(#{$colour-white})");
+
+  thead {
+    padding-bottom: 3px;
+
+    .mdl-data-table__select {
+      margin-top: 0;
+    }
+  }
+
+  tbody {
+    tr {
+      position: relative;
+      height: 48px;
+      transition-duration: 0.28s;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-property: background-color;
+
+      &.is-selected {
+        background-color: #e0e0e0;
+      }
+
+      &:hover {
+        background-color: #eeeeee;
+      }
+    }
+  }
+
+  td, th {
+    text-align: left;
+    height: 48px;
+    vertical-align: middle;
+    padding: 0 20px;
+  }
+
+  td {
+    position: relative;
+    vertical-align: middle;
+    height: 48px;
+    box-sizing: border-box;
+
+    .mdl-data-table__select {
+      vertical-align: middle;
+    }
+  }
+
+  th {
+    position: relative;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    color: rgba(#000, 0.54);
+    box-sizing: border-box;
+    text-align: center;
+  }
+}

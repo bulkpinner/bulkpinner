@@ -31,6 +31,7 @@
 @import 'element.form-elements';
 @import 'element.headings';
 @import 'element.links';
+@import 'element.tables';
 
 @import 'component.action-button';
 @import 'component.action-toolbar';
@@ -38,6 +39,8 @@
 @import 'component.buttons';
 @import 'component.footer';
 @import 'component.header';
+@import 'component.modals';
+@import 'component.preview-actions';
 @import 'component.preview-pin';
-@import 'component.privacy-policy-modal';
 @import 'component.select';
+@import 'component.temporary';

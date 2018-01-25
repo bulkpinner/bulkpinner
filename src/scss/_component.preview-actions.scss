@@ -1,0 +1,61 @@
+.preview-actions-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  .preview-action-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 30px;
+    color: $colour-grey;
+    outline: none;
+    cursor: pointer;
+
+    i {
+      pointer-events: none;
+    }
+  }
+
+  .preview-actions {
+    position: absolute;
+    right: 0;
+    top: 25px;
+    background-color: $colour-white;
+    list-style: none;
+    height: auto;
+    width: auto;
+    min-width: 124px;
+    padding: 8px 0;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.is-visible {
+      transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 1;
+    }
+  }
+
+  .preview-action {
+    display: block;
+    border: none;
+    background-color: transparent;
+    text-align: left;
+    margin: 0;
+    padding: 0 16px;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    cursor: pointer;
+    height: 48px;
+    line-height: 48px;
+    white-space: nowrap;
+    user-select: none;
+
+    &:hover {
+      background-color: $colour-soft-white;
+    }
+  }
+}

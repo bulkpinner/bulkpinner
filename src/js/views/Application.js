@@ -22,6 +22,7 @@ import DataStore from 'services/DataStore';
 import PinPreview from 'PinPreview';
 import ErrorUtil from 'services/ErrorUtil';
 import Analytics from 'services/Analytics';
+import Mousetrap from 'mousetrap';
 
 /**
  * Class Application
@@ -38,6 +39,7 @@ export default class Application {
         this.sendAllToBoardSelect = document.getElementById('send-all-to-board');
         this.fileUploadInput = document.getElementById("fileToUpload");
         this.modalOverlay = document.querySelector('.modal-overlay');
+        this.pinPreviews = [];
 
         // Wait until the user is authenticated before showing the main application interface
         CustomEvent.on('user-authenticated', () => {
@@ -51,6 +53,7 @@ export default class Application {
     init() {
         this.showApplicationContainer();
         this.attachListeners();
+        this.createKeyboardShortcuts();
     }
 
     /**
@@ -89,6 +92,15 @@ export default class Application {
             }
         });
 
+        // Event listener that will handle closing any open action menus
+        document.querySelector('body').addEventListener('click', (e) => {
+            this.pinPreviews.forEach(pinPreview => {
+                if (pinPreview.actionMenuTrigger !== e.target) {
+                    pinPreview.hidePreviewActions();
+                }
+            });
+        });
+
         this.sendToPinterestButton.addEventListener('click', () => {
             if (this.validateInputs()) {
                 this.createPins();
@@ -103,7 +115,7 @@ export default class Application {
             }
         });
 
-        this.fileUploadInput.onchange = e => this.handleImagesSelected(e);
+        this.fileUploadInput.onchange = e => this.createPinPreviews(e);
 
         document.querySelector('.privacy-policy-link').addEventListener('click', e => {
             this.showPrivacyPolicy();
@@ -112,28 +124,67 @@ export default class Application {
         document.querySelector('.modal-overlay').addEventListener('click', e => {
             if (e.target.classList.contains('modal-overlay')) {
                 this.hidePrivacyPolicy();
+                this.hideKeyboardShortcuts();
             }
         });
 
         document.querySelector('.modal-close .close').addEventListener('click', e => {
             this.hidePrivacyPolicy();
+            this.hideKeyboardShortcuts();
         });
 
         // Prepare the preview pin template with names of boards to pin to
         this.loadBoards().then(boards => {
             this.populateBoardNames(boards);
-        })
+        });
     }
 
     /**
-     * Loop through the images selected and create new FileReader objects for them,
-     * displaying the image preview to the user
+     * Assign application keyboard shortcuts
+     *
+     * @returns {null}
+     */
+    createKeyboardShortcuts() {
+        // Choose/Add more pictures to pin
+        Mousetrap.bind('a', () => {
+            document.getElementById('fileToUpload').click();
+        });
+
+        // Clear all completed (pinned) images
+        Mousetrap.bind('p c', () => {
+            document.querySelector('.clear-completed.action-button').click();
+        });
+
+        // Clean all images
+        Mousetrap.bind('p x', () => {
+            document.querySelector('.clear-all.action-button').click();
+        });
+
+        // Show privacy policy
+        Mousetrap.bind('p p', () => {
+            document.querySelector('.privacy-policy-link').click();
+        });
+
+        // Show privacy policy
+        Mousetrap.bind('esc', () => {
+            this.hideKeyboardShortcuts();
+            this.hidePrivacyPolicy();
+        });
+
+        // Show keyboard shortcuts modal
+        Mousetrap.bind('?', () => {
+            this.showKeyboardShortcuts();
+        });
+    }
+
+    /**
+     * Loop through the images selected and create instances of the Pin Preview class for each
      *
      * @param {Event} e The event object
      *
      * @returns {null}
      */
-    handleImagesSelected(e) {
+    createPinPreviews(e) {
         const input = e.target;
 
         if (input.files.length === 0) {
@@ -151,6 +202,15 @@ export default class Application {
                 let file = input.files[i];
                 let pinPreview = new PinPreview(file);
                 this.previewsPinsContainer.querySelector(".pins-container").appendChild(pinPreview.render());
+
+                // Grab the pin preview element that was just created and set it on the Pin Preview class
+                // Unable to use the returned value of appendChild, as it returns and empty DocumentFragment
+                let pinPreviews = this.previewsPinsContainer.querySelectorAll('.preview-container');
+                let instance = pinPreviews[(pinPreviews.length - 1)];
+                pinPreview.setInstance(instance);
+                pinPreview.attachListeners();
+
+                this.pinPreviews.push(pinPreview);
             }
         }, 300);
     }
@@ -345,9 +405,7 @@ export default class Application {
                 });
             } catch (exception) {
                 ErrorUtil.Log(new Error('Exception thrown from CreatePin function'), {
-                    metaData: {
-                        'exception': exception
-                    },
+                    exception: exception,
                     severity: 'error'
                 });
             }
@@ -361,6 +419,7 @@ export default class Application {
      */
     showPrivacyPolicy() {
         this.modalOverlay.classList.remove('hidden');
+        this.modalOverlay.querySelector('.privacy-policy-modal').classList.remove('hidden');
     }
 
     /**
@@ -370,5 +429,26 @@ export default class Application {
      */
     hidePrivacyPolicy() {
         this.modalOverlay.classList.add('hidden');
+        this.modalOverlay.querySelector('.privacy-policy-modal').classList.add('hidden');
+    }
+
+    /**
+     * Display the keyboard shortcuts modal
+     *
+     * @returns {null}
+     */
+    showKeyboardShortcuts() {
+        this.modalOverlay.classList.remove('hidden');
+        this.modalOverlay.querySelector('.keyboard-shortcuts-modal').classList.remove('hidden');
+    }
+
+    /**
+     * Hide the keyboard shortcuts modal
+     *
+     * @returns {null}
+     */
+    hideKeyboardShortcuts() {
+        this.modalOverlay.classList.add('hidden');
+        this.modalOverlay.querySelector('.keyboard-shortcuts-modal').classList.add('hidden');
     }
 }

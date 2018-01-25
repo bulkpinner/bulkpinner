@@ -1,3 +1,30 @@
+# 0.3.0
+
+## Features
+
+**Use Image Filename**
+
+As requested by a tester, you can now select to use the filename of the image being pinned in the note field. This is
+available through a drop down options menu in the top right of each pin preview component
+
+**Keyboard Shorts**
+
+I have added some simple keyboard shortcuts to hopefully make things even easier! To view the available keyboard shortcuts,
+type `?`.
+
+## Bug fixes
+
+**Application header in Firefox**
+
+Firefox seems to have issues when setting the height of an element to 100%, with a max height set in viewport units.
+I've fixed that now so it should display as nicely in Firefox as it does in other browsers
+
+**Error Reporting**
+
+I was getting error reports in Bugsnag, however it wasn't including any information of the actual error.
+I've now update the call to the service so I can see more information about errors if/when they happen. This will make
+them a lot easier to identify, replicate and fix.
+
 # 0.2.5
 
 **Privacy Policy**

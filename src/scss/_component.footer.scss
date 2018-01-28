@@ -19,14 +19,40 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 5vh;
   flex: 0 0 auto;
-  padding: 0 30px;
+  padding: 15px 30px;
   background-color: $colour-mid-grey;
+  flex-direction: column;
+  text-align: center;
+
+  @media (min-width: $largeBreakpoint) {
+    padding: 0 30px;
+    flex-direction: row;
+    height: 5vh;
+  }
+
+  & > div + div {
+    padding-top: 15px;
+
+    @media (min-width: $largeBreakpoint) {
+      padding-top: 0;
+    }
+  }
 
   .links-container {
     display: flex;
     justify-content: space-between;
-    flex: 0 0 220px;
+
+    @media (min-width: $largeBreakpoint) {
+      flex: 0 0 220px;
+    }
+
+    & > div + div {
+      padding-left: 20px;
+
+      @media (min-width: $largeBreakpoint) {
+        padding-left: 0;
+      }
+    }
   }
 }

@@ -105,6 +105,10 @@
       font-size: 30px;
       color: $colour-success;
     }
+
+    .preview-actions-container {
+      display: none;
+    }
   }
 
   &[data-pin-error] {

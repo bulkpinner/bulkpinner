@@ -56,6 +56,7 @@
   @include button($size);
   background-color: $colour-pinterest-red;
   color: $colour-white;
+  max-height: 56px;
 }
 
 @mixin button-blue($size: 'large') {

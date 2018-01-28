@@ -17,6 +17,7 @@
 
 .action-button {
   @include button-default('small');
+  white-space: nowrap;
 
   // The following is required before the Balloon.css library isn't working properly for the tooltip on this particular button
   &::before {
@@ -29,6 +30,47 @@
   }
 
   + .action-button {
-    margin-left: 10px;
+    @media (min-width: 1180px) {
+      margin-left: 10px;
+    }
+  }
+
+  &.action-menu-toggle {
+    @media (min-width: 1180px) {
+      display: none;
+    }
+  }
+
+  &:nth-child(n + 2) {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    position: absolute;
+    display: block;
+    z-index: 10;
+
+    @media (min-width: 1180px) {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+      position: static;
+      display: inline-block;
+    }
+  }
+
+  .action-buttons.show-menu & {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 100ms linear;
+    pointer-events: all;
+
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i+1}) {
+        top: 35px * $i;
+      }
+      &:nth-child(#{$i+2}) {
+        transition-delay: 50ms * $i;
+      }
+    }
   }
 }

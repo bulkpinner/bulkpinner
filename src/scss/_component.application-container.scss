@@ -18,7 +18,7 @@
 .application-container {
   flex: 1 0 auto;
   min-height: 0;
-  padding: 30px;
+  padding: 0 30px 30px;
 
   &:not(.expanded) { // This class will be applied when the application is displaying preview pins
     display: flex;
@@ -30,6 +30,12 @@
   .get-started {
     font-size: 1.5em;
     color: $colour-grey;
+  }
+
+  .preview-pins-container {
+    &.toolbar-is-sticky {
+      padding-top: 86px;
+    }
   }
 
   .pins-container {

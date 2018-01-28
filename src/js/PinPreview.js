@@ -15,6 +15,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import ErrorUtil from 'services/ErrorUtil';
+import Analytics from 'services/Analytics';
+import API from 'services/API';
+
 /**
  * Class PinPreview
  */
@@ -42,7 +46,7 @@ export default class PinPreview {
         this.actionMenuTrigger = this.instance.querySelector('.preview-action-btn');
         this.actionMenu        = this.instance.querySelector('.preview-actions');
         this.note              = this.instance.querySelector('#note');
-        this.link              = this.instance.querySelector('#link');
+        this.link              = this.instance.querySelector('.link');
 
         return this;
     }
@@ -112,6 +116,17 @@ export default class PinPreview {
     }
 
     /**
+     * Set value for link
+     *
+     * @param {string} link The value to be set for the link field
+     *
+     * @returns {null}
+     */
+    setLink(link) {
+        this.link.value = link;
+    }
+
+    /**
      * Render a pin preview template instance
      *
      * @returns {Node}
@@ -136,5 +151,45 @@ export default class PinPreview {
         reader.readAsDataURL(this.file);
 
         return instance;
+    }
+
+    /**
+     * Send request to Pinterest to pin this image
+     *
+     * @returns {null}
+     */
+    createPin() {
+        const imageData = this.instance.querySelector('.preview-image').src;
+        const note      = this.instance.querySelector(".note").value;
+        const board     = this.instance.querySelector(".board-names").value;
+        const link      = this.instance.querySelector(".link").value;
+
+        this.instance.classList.toggle('sending', true);
+        delete this.instance.dataset.pinError; // Remove any previous error that might be displaying
+
+        try {
+            API.CreatePin({
+                board: board, // Sending just the board ID. Documentation doesn't say this can be done, but it works. Reason is: spaces in board names
+                image_base64: imageData,
+                note: note,
+                link: link
+            })
+                .then(response => {
+                    this.instance.dataset.pinned = true;
+                    this.instance.classList.toggle('sending', false);
+                    Analytics.PinCreated();
+                })
+                .catch(err => {
+                    ErrorUtil.Log(new Error('Create Pin promise rejected'), {
+                        error: err,
+                        severity: 'error'
+                    });
+                });
+        } catch (exception) {
+            ErrorUtil.Log(new Error('Exception thrown from CreatePin function'), {
+                exception: exception,
+                severity: 'error'
+            });
+        }
     }
 }

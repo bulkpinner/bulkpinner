@@ -12,11 +12,19 @@
     .footnote {
       display: block;
       font-size: 0.7em;
-      padding-top: 70px;
-      max-width: 50%;
+      padding-top: 20px;
+      max-width: 100%;
       margin: 0 auto;
       line-height: 1.2em;
       letter-spacing: 1px;
+
+      @media (min-width: $largeBreakpoint) {
+        max-width: 50%;
+      }
+
+      @media (min-width: 450px) {
+        padding-top: 70px;
+      }
 
       a {
         color: $colour-white;

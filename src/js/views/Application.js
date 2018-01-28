@@ -20,9 +20,8 @@ import ClearPreviews from "ClearPreviews";
 import API from 'services/API';
 import DataStore from 'services/DataStore';
 import PinPreview from 'PinPreview';
-import ErrorUtil from 'services/ErrorUtil';
-import Analytics from 'services/Analytics';
 import Mousetrap from 'mousetrap';
+import debounce from 'debounce';
 
 /**
  * Class Application
@@ -77,6 +76,7 @@ export default class Application {
      */
     attachListeners() {
         this.refreshBoardsButton.addEventListener('click', () => {
+            Application.toggleActionMenu(false);
             this.loadBoards(true)
             .then(boards => {
                 this.populateBoardNames(boards);
@@ -99,6 +99,7 @@ export default class Application {
                     pinPreview.hidePreviewActions();
                 }
             });
+            Application.toggleActionMenu(false);
         });
 
         this.sendToPinterestButton.addEventListener('click', () => {
@@ -137,6 +138,16 @@ export default class Application {
         this.loadBoards().then(boards => {
             this.populateBoardNames(boards);
         });
+
+        // Listen for scroll event to check for updating the sticky-ness of the Pin button
+        document.addEventListener('scroll', debounce(() => {
+            this.updateStickyPin();
+        }, 10, false));
+
+        document.querySelector('.action-menu-toggle').addEventListener('click', (e) => {
+            e.stopImmediatePropagation();
+            Application.toggleActionMenu();
+        });
     }
 
     /**
@@ -171,6 +182,11 @@ export default class Application {
             this.hidePrivacyPolicy();
         });
 
+        // Autofill shortcut
+        Mousetrap.bind('> > >', () => {
+            this.autofillFields();
+        });
+
         // Show keyboard shortcuts modal
         Mousetrap.bind('?', () => {
             this.showKeyboardShortcuts();
@@ -198,6 +214,10 @@ export default class Application {
         this.previewsPinsContainer.classList.toggle('hidden', false);
 
         window.setTimeout(() => { // Allow time for the CSS animation to run before
+            // Set the breakpoint for the Pin button becoming sticky _after_ the header is back to it's small state
+            const scrollOffset = -20; // Padding changes from 30px top 10px, so that needs to be factored in
+            this.windowBreakpoint = Math.abs(document.querySelector('.action-toolbar').getBoundingClientRect().top - document.querySelector('body').getBoundingClientRect().top - scrollOffset);
+
             for (let i = 0 ; i < input.files.length ; i++) {
                 let file = input.files[i];
                 let pinPreview = new PinPreview(file);
@@ -365,50 +385,13 @@ export default class Application {
      * @returns {null}
      */
     createPins() {
-        const previews = document.querySelectorAll('.preview-container');
-
-        for (let i = 0 ; i < previews.length ; i++) {
-            let preview = previews[i];
-
+        for (let pinPreview of this.pinPreviews) {
             // Skip any images that have already been pinned in this session
-            if (preview.dataset.pinned) {
+            if (pinPreview.instance.dataset.pinned) {
                 continue;
             }
 
-            const imageData = preview.querySelector('.preview-image').src;
-            const note      = preview.querySelector(".note").value;
-            const board     = preview.querySelector(".board-names").value;
-            const link      = preview.querySelector(".link").value;
-
-            preview.classList.toggle('sending', true);
-            delete preview.dataset.pinError; // Remove any previous error that might be displaying
-
-            try {
-                API.CreatePin({
-                    board: board, // Sending just the board ID. Documentation doesn't say this can be done, but it works. Reason is: spaces in board names
-                    image_base64: imageData,
-                    note: note,
-                    link: link
-                })
-                .then(response => {
-                    preview.dataset.pinned = true;
-                    preview.classList.toggle('sending', false);
-                    Analytics.PinCreated();
-                })
-                .catch(err => {
-                    ErrorUtil.Log(new Error('Create Pin promise rejected'), {
-                        metaData: {
-                            'error': err
-                        },
-                        severity: 'error'
-                    });
-                });
-            } catch (exception) {
-                ErrorUtil.Log(new Error('Exception thrown from CreatePin function'), {
-                    exception: exception,
-                    severity: 'error'
-                });
-            }
+            pinPreview.createPin();
         }
     }
 
@@ -450,5 +433,58 @@ export default class Application {
     hideKeyboardShortcuts() {
         this.modalOverlay.classList.add('hidden');
         this.modalOverlay.querySelector('.keyboard-shortcuts-modal').classList.add('hidden');
+    }
+
+    /**
+     * Auto fill the note and link fields from the first Pin Preview element, to the rest of the Pin Preview elements
+     *
+     * @returns {null}
+     */
+    autofillFields() {
+        if (this.pinPreviews.length === 0) {
+            return;
+        }
+
+        const noteField = this.pinPreviews[0].instance.querySelector("#note").value;
+        const linkField = this.pinPreviews[0].instance.querySelector(".link").value;
+
+        for (let pinPreview of this.pinPreviews) {
+            pinPreview.setNote(noteField);
+            pinPreview.setLink(linkField);
+        }
+    }
+
+    /**
+     * Check for and enable/disable the Pin button from being sticky
+     *
+     * @returns {null}
+     */
+    updateStickyPin() {
+        if (window.pageYOffset >= this.windowBreakpoint) {
+            document.querySelector('.action-toolbar').classList.toggle('sticky', true);
+            document.querySelector('.preview-pins-container').classList.toggle('toolbar-is-sticky', true);
+        } else {
+            document.querySelector('.action-toolbar').classList.toggle('sticky', false);
+            document.querySelector('.preview-pins-container').classList.toggle('toolbar-is-sticky', false);
+        }
+    }
+
+    /**
+     * Toggle the state of the action menu
+     *
+     * @param {boolean|undefined} show [Optional] True/false to force show/hide the menu
+     *                                 No value passed and the menu will just toggle
+     *
+     * @returns {null}
+     */
+    static toggleActionMenu(show = undefined) {
+        const actionButtons = document.querySelector('.action-buttons');
+
+        if (typeof show !== 'undefined') {
+            actionButtons.classList.toggle('show-menu', show);
+        } else {
+            actionButtons.classList.toggle('show-menu');
+        }
+
     }
 }

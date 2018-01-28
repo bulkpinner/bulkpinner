@@ -43,7 +43,11 @@
 
     .authentication-container,
     .image-select-container {
-      padding-top: 100px;
+      padding-top: 20px;
+
+      @media (min-width: 450px) {
+        padding-top: 100px;
+      }
     }
 
     .description {

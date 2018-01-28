@@ -15,6 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import Application from 'views/Application';
+
 /**
  * Class API
  *
@@ -83,6 +85,7 @@ export default class ClearPreviews {
         }
 
         this.resetSendAllToBoard();
+        Application.toggleActionMenu(false);
     }
 
     /**

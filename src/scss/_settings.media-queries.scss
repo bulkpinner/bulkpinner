@@ -15,21 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * Heading element styling
- */
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background: $colour-soft-white;
-  color: $colour-black;
-
-  .github-fork-link {
-    display: none;
-
-    @media (min-width: $largeBreakpoint) {
-      display: block;
-    }
-  }
-}
+$extraLargeBreakpoint: 1380px !default;
+$largeBreakpoint: 1080px !default;
+$mediumBreakpoint: 500px !default;

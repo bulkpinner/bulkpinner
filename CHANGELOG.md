@@ -1,3 +1,29 @@
+# 0.4.0
+
+## Features
+
+**Sticky Action Toolbar**
+
+When scrolling down, the action toolbar will now become sticky. This is to stop users having to scroll back to the top
+of the page to click the Pin button, but also because the other actions could be useful as a user scrolls
+
+## Improvement
+
+**Pin Preview option drop down hidden**
+
+When a pin is successfully create, the options drop down is no longer required, so it is now hidden
+
+**Autofill all note/link fields**
+
+Added a new shortcut key that will automatically populate the note and link fields for all Pin Preview with the value
+of the note and link fields in the first Pin Preview.
+
+**Various code refactoring**
+
+**Made interface somewhat responsive**
+
+If using the application on mobile, it should be a lot more usable now
+
 # 0.3.0
 
 ## Features

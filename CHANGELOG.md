@@ -1,3 +1,9 @@
+# 0.4.1
+
+**Removed note about limited users**
+
+Pinterest have finally approved the app, so the notice that only testers can use it is no longer required
+
 # 0.4.0
 
 ## Features

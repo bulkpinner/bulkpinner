@@ -36,6 +36,14 @@
     &.toolbar-is-sticky {
       padding-top: 86px;
     }
+
+    .preview-piins-footer {
+      text-align: center;
+
+      ins { // Adsense container
+        margin-top: 50px
+      }
+    }
   }
 
   .pins-container {

@@ -35,6 +35,10 @@ export default class DataStore {
         return 'pinterest_boards';
     }
 
+    static DATA__IS_ADMIN() {
+        return 'bulk_pinner_admin';
+    }
+
     /**
      * Set value in the data store
      *

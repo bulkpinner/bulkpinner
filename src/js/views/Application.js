@@ -22,6 +22,7 @@ import DataStore from 'services/DataStore';
 import PinPreview from 'PinPreview';
 import Mousetrap from 'mousetrap';
 import debounce from 'debounce';
+import Analytics from 'services/Analytics';
 
 /**
  * Class Application
@@ -84,6 +85,7 @@ export default class Application {
             .catch(response => {
                 console.error(response);
             });
+            Analytics.FeatureUsed('refresh_boards');
         });
 
         this.pinsContainer.addEventListener('blur', e => {
@@ -113,6 +115,7 @@ export default class Application {
 
             if (boardValue !== '') {
                 this.updateSelectedBoards(boardValue);
+                Analytics.FeatureUsed('update_selected_boards');
             }
         });
 
@@ -159,21 +162,25 @@ export default class Application {
         // Choose/Add more pictures to pin
         Mousetrap.bind('a', () => {
             document.getElementById('fileToUpload').click();
+            Analytics.KeyboardShortcutUsed('add_more');
         });
 
         // Clear all completed (pinned) images
         Mousetrap.bind('p c', () => {
             document.querySelector('.clear-completed.action-button').click();
+            Analytics.KeyboardShortcutUsed('clear_completed');
         });
 
         // Clean all images
         Mousetrap.bind('p x', () => {
             document.querySelector('.clear-all.action-button').click();
+            Analytics.KeyboardShortcutUsed('clear_all');
         });
 
         // Show privacy policy
         Mousetrap.bind('p p', () => {
             document.querySelector('.privacy-policy-link').click();
+            Analytics.KeyboardShortcutUsed('show_privacy_policy');
         });
 
         // Show privacy policy
@@ -185,11 +192,13 @@ export default class Application {
         // Autofill shortcut
         Mousetrap.bind('> > >', () => {
             this.autofillFields();
+            Analytics.KeyboardShortcutUsed('autofill_fields');
         });
 
         // Show keyboard shortcuts modal
         Mousetrap.bind('?', () => {
             this.showKeyboardShortcuts();
+            Analytics.KeyboardShortcutUsed('show_keyboard_shortcuts_modal');
         });
     }
 

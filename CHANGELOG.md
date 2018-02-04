@@ -1,3 +1,9 @@
+# 0.4.2
+
+**Added more custom event tracking**
+
+This will allow me to see how people use the application, so I can see which parts are useful and which aren't so useful
+
 # 0.4.1
 
 **Removed note about limited users**

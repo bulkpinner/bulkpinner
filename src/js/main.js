@@ -20,18 +20,26 @@ import Application from 'views/Application';
 import API from 'services/API';
 import CustomEvent from 'services/CustomEvent';
 
-// Create instances of application classes
-new Authorization();
-new Application();
-
-// Determine if used is logged in and publish appropriate status
-if (!API.IsAuthenticated()) {
-    CustomEvent.trigger('user-not-authenticated');
+// If the user is using Internet Explorer, kindly let them know that their browser is out of date, and that they should update
+if (window.navigator.userAgent.indexOf("MSIE") > 0 || !!navigator.userAgent.match(/Trident\/7\./)) {
+    document.querySelector('body').classList.add('no-scroll');
+    document.querySelector('.modal-overlay').classList.remove('hidden');
+    document.querySelector('.modal-overlay').classList.add('ie-overlay');
+    document.querySelector('.modal-overlay').querySelector('.internet-explorer-disabled').classList.remove('hidden');
 } else {
-    CustomEvent.trigger('user-authenticated');
-}
+    // Create instances of application classes
+    new Authorization();
+    new Application();
 
-if (window.location.origin !== 'https://bulkpinner.github.io') {
-    Bugsnag.releaseStage = 'development';
-    Bugsnag.notifyReleaseStages = ['production', 'staging'];
+    // Determine if used is logged in and publish appropriate status
+    if (!API.IsAuthenticated()) {
+        CustomEvent.trigger('user-not-authenticated');
+    } else {
+        CustomEvent.trigger('user-authenticated');
+    }
+
+    if (window.location.origin !== 'https://bulkpinner.github.io') {
+        Bugsnag.releaseStage = 'development';
+        Bugsnag.notifyReleaseStages = ['production', 'staging'];
+    }
 }

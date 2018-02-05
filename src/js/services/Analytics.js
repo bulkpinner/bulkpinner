@@ -29,9 +29,7 @@ export default class Analytics {
      */
     static PinCreated() {
         Analytics.FireEvent('pin_created', {
-            'event_category': 'pins',
-            'event_label':'created',
-            'value': '1'
+            'event_category': 'pins'
         });
     }
 
@@ -43,9 +41,8 @@ export default class Analytics {
      * @returns {null}
      */
     static KeyboardShortcutUsed(shortcutName) {
-        Analytics.FireEvent('keyboard_shortcut_used', {
-            'event_category': 'keyboard_shortcuts',
-            'value': shortcutName
+        Analytics.FireEvent(shortcutName, {
+            'event_category': 'keyboard_shortcuts'
         });
     }
 
@@ -57,9 +54,8 @@ export default class Analytics {
      * @returns {null}
      */
     static FeatureUsed(featureName) {
-        Analytics.FireEvent('feature_used', {
-            'event_category': 'features',
-            'value': featureName
+        Analytics.FireEvent(featureName, {
+            'event_category': 'features'
         });
     }
 

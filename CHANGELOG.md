@@ -1,3 +1,16 @@
+# 0.4.3
+
+**Fixed event tracking**
+
+The previous udpate added some event tracking, but it wasn't going through to Google Analytics in a very readable way,
+so that's been fixed
+
+**Out of date browser message**
+
+The application doesn't work in Internet Explorer. IE is a pain to support, so I decided I wouldn't. As there have been
+people trying to use Bulk Pinner with IE11, I've now created a simple Browser Out Of Date message that will let users
+know that they should update to a modern browser.
+
 # 0.4.2
 
 **Added more custom event tracking**

@@ -23,6 +23,11 @@
   bottom: 0;
   background-color: rgba(255, 255, 255, 0.5);
 
+  &.ie-overlay {
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 99;
+  }
+
   .modal {
     position: absolute;
     left: 50%;

@@ -77,7 +77,7 @@ export default class Application {
      */
     attachListeners() {
         this.refreshBoardsButton.addEventListener('click', () => {
-            Application.toggleActionMenu(false);
+            Application.ToggleActionMenu(false);
             this.loadBoards(true)
             .then(boards => {
                 this.populateBoardNames(boards);
@@ -101,7 +101,7 @@ export default class Application {
                     pinPreview.hidePreviewActions();
                 }
             });
-            Application.toggleActionMenu(false);
+            Application.ToggleActionMenu(false);
         });
 
         this.sendToPinterestButton.addEventListener('click', () => {
@@ -129,12 +129,13 @@ export default class Application {
             if (e.target.classList.contains('modal-overlay')) {
                 this.hidePrivacyPolicy();
                 this.hideKeyboardShortcuts();
+                return;
             }
-        });
 
-        document.querySelector('.modal-close .close').addEventListener('click', e => {
-            this.hidePrivacyPolicy();
-            this.hideKeyboardShortcuts();
+            if (e.target.classList.contains('close')) {
+                this.hidePrivacyPolicy();
+                this.hideKeyboardShortcuts();
+            }
         });
 
         // Prepare the preview pin template with names of boards to pin to
@@ -149,7 +150,18 @@ export default class Application {
 
         document.querySelector('.action-menu-toggle').addEventListener('click', (e) => {
             e.stopImmediatePropagation();
-            Application.toggleActionMenu();
+            Application.ToggleActionMenu();
+        });
+
+        // @TODO This will need to be refactored - create an action menu class that will work for both the user actions and app actions
+        document.querySelector('.user-action-menu-toggle').addEventListener('click', e => {
+            document.querySelector('.user-actions-container').classList.toggle('show-menu');
+        });
+
+        document.querySelector('.user-action__disconnect').addEventListener('click', e => {
+            DataStore.Remove(DataStore.DATA__ACCESS_TOKEN());
+            DataStore.Remove(DataStore.DATA__BOARDS());
+            location.reload();
         });
     }
 
@@ -486,7 +498,7 @@ export default class Application {
      *
      * @returns {null}
      */
-    static toggleActionMenu(show = undefined) {
+    static ToggleActionMenu(show = undefined) {
         const actionButtons = document.querySelector('.action-buttons');
 
         if (typeof show !== 'undefined') {

@@ -19,11 +19,14 @@
  * Pin preview component styling
  */
 .preview-container {
+  display: flex;
   padding: 5px;
   margin-top: 30px;
   max-width: 300px;
 
   .preview-inner-container {
+    display: flex;
+    flex-direction: column;
     position: relative;
     background: $colour-white;
     padding: 10px;
@@ -53,6 +56,7 @@
   }
 
   .note-container {
+    display: flex;
     padding: 5px 0;
 
     .note {
@@ -66,6 +70,11 @@
       }
     }
   }
+
+  .link-container {
+    display: flex;
+  }
+
 
   .image-uploading-container {
     display: none;

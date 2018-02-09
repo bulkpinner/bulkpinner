@@ -19,6 +19,7 @@
  * Page header component styling
  */
 .page-header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -31,11 +32,29 @@
   transition: max-height 300ms linear, justify-content 300ms linear;
   flex: 0 0 auto;
 
+  .github-fork-link {
+    position: absolute;
+    top: -200%;
+    left: 0;
+    display: none;
+    z-index: 990;
+    transition: top 300ms linear;
+
+    @media (min-width: $largeBreakpoint) {
+      display: block;
+    }
+  }
+
   &.large {
     max-height: 60vh;
     justify-content: center;
     flex-direction: column;
     transition: max-height 300ms linear, justify-content 300ms linear;
+
+    .github-fork-link {
+      top: 0;
+      transition: top 300ms ease-out;
+    }
 
     .application-name {
       margin-bottom: 20px;
@@ -52,6 +71,47 @@
 
     .description {
       display: block;
+    }
+
+    .user-actions-container {
+      top: 15px;
+      transform: translateY(0);
+    }
+  }
+
+  .user-actions-container {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+
+    .user-action-menu-toggle {
+      @include button-white(small);
+    }
+
+    .user-action__disconnect {
+      @include button-white(small);
+      position: absolute;
+      top: 29px;
+      right: 0;
+      opacity: 0;
+      // Delay the transform transition by the length of the opacity transition, you the user doesn't see the items move back up
+      transition: opacity 200ms ease, transform 0ms linear 200ms;
+      z-index: 998;
+      transform: translateY(-10px);
+
+      &:hover {
+        background-color: $colour-pinterest-red;
+        color: $colour-white;
+      }
+    }
+
+    &.show-menu {
+      .user-action__disconnect {
+        opacity: 1;
+        transition: all 200ms ease;
+        transform: translateY(0);
+      }
     }
   }
 

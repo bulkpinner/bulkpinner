@@ -1,3 +1,23 @@
+# 0.5.0
+
+## Improvements
+
+Added the ability to disconnect the currently connected Pinterst account, so that you can authorize and use another Pinterest account
+
+Styled the letters in the keyboard shortcuts modal. In case you weren't aware the modal can be accessed by typing ? (shift + /)
+
+## Bug fixes
+
+Fixed close button for keyboard shortcuts modal
+
+Fixed the height of pin previews so they all match
+
+Fixed layering of modals, which were being displayed behing the toolbar since it was made sticky
+
+Fixed position of modals when they triggered after users have scrolled down the page
+
+Fixed the width of the note and link fields
+
 # 0.4.3
 
 **Fixed event tracking**

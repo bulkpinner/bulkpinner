@@ -85,7 +85,7 @@ export default class ClearPreviews {
         }
 
         this.resetSendAllToBoard();
-        Application.toggleActionMenu(false);
+        Application.ToggleActionMenu(false);
     }
 
     /**

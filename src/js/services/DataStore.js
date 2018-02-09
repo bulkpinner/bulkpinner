@@ -61,4 +61,15 @@ export default class DataStore {
     static Get(key) {
         return window.localStorage.getItem(key);
     }
+
+    /**
+     * Remove a local storage key/value
+     *
+     * @param {string} key The identifying key to remove
+     *
+     * @returns {null}
+     */
+    static Remove(key) {
+        return window.localStorage.removeItem(key);
+    }
 }

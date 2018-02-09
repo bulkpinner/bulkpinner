@@ -25,14 +25,6 @@ body {
   background: $colour-soft-white;
   color: $colour-black;
 
-  .github-fork-link {
-    display: none;
-
-    @media (min-width: $largeBreakpoint) {
-      display: block;
-    }
-  }
-
   &.no-scroll {
     overflow: hidden;
   }

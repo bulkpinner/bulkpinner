@@ -161,6 +161,7 @@ export default class Application {
         document.querySelector('.user-action__disconnect').addEventListener('click', e => {
             DataStore.Remove(DataStore.DATA__ACCESS_TOKEN());
             DataStore.Remove(DataStore.DATA__BOARDS());
+            Analytics.FeatureUsed('disconnect_pinterest');
             location.reload();
         });
     }

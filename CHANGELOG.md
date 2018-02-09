@@ -1,3 +1,11 @@
+# 0.5.1
+
+## Bug Fixes
+
+Actually fixed the modal close bug
+
+Added an Analytics feature tracking event
+
 # 0.5.0
 
 ## Improvements

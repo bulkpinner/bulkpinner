@@ -16,7 +16,6 @@
  */
 
 import CustomEvent from 'services/CustomEvent';
-import ClearPreviews from "ClearPreviews";
 import API from 'services/API';
 import DataStore from 'services/DataStore';
 import PinPreview from 'PinPreview';
@@ -30,7 +29,6 @@ import Analytics from 'services/Analytics';
 export default class Application {
 
     constructor() {
-        this.clearPreviews = new ClearPreviews();
         this.previewsPinsContainer = document.querySelector('.preview-pins-container');
         this.imageSelectContainer = document.querySelector(".image-select-container");
         this.refreshBoardsButton = document.querySelector('.refresh-boards');
@@ -39,6 +37,8 @@ export default class Application {
         this.sendAllToBoardSelect = document.getElementById('send-all-to-board');
         this.fileUploadInput = document.getElementById("fileToUpload");
         this.modalOverlay = document.querySelector('.modal-overlay');
+        this.clearButton    = document.querySelector(".clear-completed");
+        this.clearAllButton = document.querySelector(".clear-all");
         this.pinPreviews = [];
 
         // Wait until the user is authenticated before showing the main application interface
@@ -86,6 +86,14 @@ export default class Application {
                 console.error(response);
             });
             Analytics.FeatureUsed('refresh_boards');
+        });
+
+        this.clearButton.addEventListener('click', e => {
+            this.clearCompleted();
+        });
+
+        this.clearAllButton.addEventListener('click', e => {
+            this.clearAll();
         });
 
         this.pinsContainer.addEventListener('blur', e => {
@@ -164,6 +172,59 @@ export default class Application {
             Analytics.FeatureUsed('disconnect_pinterest');
             location.reload();
         });
+    }
+
+    /**
+     * Clear preview pins that have been uploaded to pinterest
+     *
+     * @returns {null}
+     */
+    clearCompleted() {
+        const completedPins = document.querySelectorAll(".preview-container[data-pinned='true']");
+        this.clear(completedPins);
+        this.pinPreviews = this.pinPreviews.filter(preview => !preview.isPinned());
+    }
+
+    /**
+     * Clear all preview pins
+     *
+     * @returns {null}
+     */
+    clearAll() {
+        const previewPins = document.querySelectorAll(".preview-container");
+        this.clear(previewPins);
+        this.pinPreviews = [];
+    }
+
+    /**
+     * Remove elements from the DOM
+     *
+     * @param {NodeList} elements Array of elements to remove
+     */
+    clear(elements) {
+        for (let i = 0 ; i < elements.length ; i++) {
+            elements[i].remove();
+        }
+
+        if (document.querySelectorAll(".preview-container").length === 0) {
+            document.querySelector('.page-header').classList.toggle('large', true);
+            document.querySelector('.get-started').classList.toggle('hidden', false);
+            document.querySelector('.application-container').classList.toggle('expanded', false);
+            document.querySelector('.label-text').innerText = 'Choose Images';
+            document.querySelector('.preview-pins-container').classList.toggle('hidden', true);
+        }
+
+        this.resetSendAllToBoard();
+        Application.ToggleActionMenu(false);
+    }
+
+    /**
+     * Reset the selected value in the Send all to board drop down
+     *
+     * @returns {null}
+     */
+    resetSendAllToBoard() {
+        document.querySelector("#send-all-to-board").value = "";
     }
 
     /**

@@ -105,6 +105,15 @@ export default class PinPreview {
     }
 
     /**
+     * Determine if this pin preview has been sent to Pinterest
+     *
+     * @returns {boolean}
+     */
+    isPinned() {
+        return !!this.instance.dataset.pinned || false;
+    }
+
+    /**
      * Set value for the note textarea
      *
      * @param {string} value The new value for the note

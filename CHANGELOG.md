@@ -1,3 +1,11 @@
+# 0.5.2
+
+## Bug Fixes
+
+Modals can now be viewed on mobile
+
+Autofill will work on subsequent tries, not just the first time after a page load
+
 # 0.5.1
 
 ## Bug Fixes

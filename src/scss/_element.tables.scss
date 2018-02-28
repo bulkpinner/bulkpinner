@@ -22,9 +22,9 @@
 table {
   position: relative;
   border-collapse: collapse;
-  white-space: nowrap;
   font-size: 13px;
   background-color: unquote("rgb(#{$colour-white})");
+  max-width: 100%;
 
   thead {
     padding-bottom: 3px;
@@ -77,5 +77,6 @@ table {
     color: rgba(#000, 0.54);
     box-sizing: border-box;
     text-align: center;
+    white-space: nowrap;
   }
 }

@@ -1,5 +1,9 @@
 # 0.5.2
 
+Updated version of Bugsnag to hopefully better capture application errors
+
+# 0.5.2
+
 ## Bug Fixes
 
 Modals can now be viewed on mobile

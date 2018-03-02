@@ -1,11 +1,12 @@
 {
   "name": "bulkpinner",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "An application that allows you to pin multiple images to your Pinterest boards at once",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "http-server dist --ssl",
+    "deploy": "gulp --deploy",
     "dev": "gulp --dev"
   },
   "author": "",
@@ -55,5 +56,8 @@
     "webpack": "^2.5.0",
     "webpack-stream": "^3.2.0",
     "yargs": "^4.7.1"
+  },
+  "dependencies": {
+    "gulp-upload": "^1.0.0"
   }
 }

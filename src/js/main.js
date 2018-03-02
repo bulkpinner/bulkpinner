@@ -38,8 +38,17 @@ if (window.navigator.userAgent.indexOf("MSIE") > 0 || !!navigator.userAgent.matc
         CustomEvent.trigger('user-authenticated');
     }
 
+    const bugsnagOptions = {
+        apiKey: '856ea8cf87049704dbad28042ef0aa16',
+        appVersion: '0.5.3',
+        releaseStage: 'production',
+        notifyReleaseStages: ['production', 'staging'],
+        collectUserIp: false
+    };
+
     if (window.location.origin !== 'https://bulkpinner.github.io') {
-        Bugsnag.releaseStage = 'development';
-        Bugsnag.notifyReleaseStages = ['production', 'staging'];
+        bugsnagOptions.releaseStage = 'developer';
     }
+
+    window.bugsnagClient = bugsnag(bugsnagOptions)
 }

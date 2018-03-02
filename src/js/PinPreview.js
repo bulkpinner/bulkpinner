@@ -196,7 +196,9 @@ export default class PinPreview {
                 });
         } catch (exception) {
             ErrorUtil.Log(new Error('Exception thrown from CreatePin function'), {
-                exception: exception,
+                metaData: {
+                    'details': exception
+                },
                 severity: 'error'
             });
         }

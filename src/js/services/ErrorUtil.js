@@ -32,7 +32,7 @@ export default class ErrorUtil {
      */
     static Log(error, options) {
         if (window.location.origin === 'https://bulkpinner.github.io') {
-            Bugsnag.notifyException(error, options);
+            bugsnagClient.notify(error, options);
         } else {
             console.error(error);
             console.error(options);

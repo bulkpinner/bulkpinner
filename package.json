@@ -1,6 +1,6 @@
 {
   "name": "bulkpinner",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "An application that allows you to pin multiple images to your Pinterest boards at once",
   "main": "index.js",
   "scripts": {
@@ -53,11 +53,9 @@
     "stylelint-config-standard": "^16.0.0",
     "stylelint-scss": "^2.1.0",
     "template-polyfill": "^2.0.0",
+    "uglifyjs-webpack-plugin": "^1.2.2",
     "webpack": "^2.5.0",
     "webpack-stream": "^3.2.0",
     "yargs": "^4.7.1"
-  },
-  "dependencies": {
-    "gulp-upload": "^1.0.0"
   }
 }

@@ -1,3 +1,7 @@
+# 0.5.4
+
+Updated uglification of JS so it happens within webpack
+
 # 0.5.2
 
 Updated version of Bugsnag to hopefully better capture application errors

@@ -33,6 +33,16 @@ gulp.task('sass', () => {
  * Process the JS files
  */
 gulp.task('webpack', () => {
+    const webpackPlugins = [];
+
+    if (!args.dev) {
+        webpackPlugins.push(new webpack.optimize.UglifyJsPlugin({
+            compress: { warnings: false },
+            output: { comments: false },
+            sourceMap: true
+        }));
+    }
+
     //App scripts
     return gulp.src('src/js/*.js')
         .pipe(plugins.plumber())
@@ -45,6 +55,7 @@ gulp.task('webpack', () => {
                 ]
             },
             devtool: 'source-map',
+            plugins: webpackPlugins,
             module: {
                 loaders: [{
                     loader: 'babel-loader'
@@ -61,24 +72,6 @@ gulp.task('js', ['webpack'], () => {
     return gulp.src('dist/js/scripts.js')
         .pipe(plugins.plumber())
         .pipe(plugins.if(args.debug, plugins.debug({title: 'JS'})))
-        .pipe(plugins.if(!args.dev, plugins.uglify()))
-        // .pipe(plugins.if(args.deploy, plugins.upload({
-        //     server: 'https://upload.bugsnag.com',
-        //     data: {
-        //         apiKey: '856ea8cf87049704dbad28042ef0aa16',
-        //         minifiedUrl: 'http*://bulkpinner.github.io/site/js/scripts.js',
-        //         sourceMap: '@dist/js/scripts.js.map',
-        //         overwrite: true,
-        //         appVersion: packageJson.version
-        //     },
-        //     callback: (err, data, res) => {
-        //         if (err) {
-        //             console.error('Error: ' + err.toString());
-        //         } else {
-        //             console.log(data.toString());
-        //         }
-        //     }
-        // })))
         .pipe(gulp.dest('dist/js'));
 });
 

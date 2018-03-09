@@ -174,7 +174,9 @@ export default class PinPreview {
         const link      = this.instance.querySelector(".link").value;
 
         this.instance.classList.toggle('sending', true);
-        delete this.instance.dataset.pinError; // Remove any previous error that might be displaying
+        if (typeof this.instance.dataset.pinError !== 'undefined') {
+            delete this.instance.dataset.pinError; // Remove any previous error that might be displaying
+        }
 
         try {
             API.CreatePin({

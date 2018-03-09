@@ -1,3 +1,9 @@
+# 0.5.5
+
+## Bug Fixes
+
+Fixed bug caused by trying to clear error sig
+
 # 0.5.4
 
 Updated uglification of JS so it happens within webpack

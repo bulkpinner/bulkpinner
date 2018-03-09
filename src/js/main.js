@@ -40,7 +40,7 @@ if (window.navigator.userAgent.indexOf("MSIE") > 0 || !!navigator.userAgent.matc
 
     const bugsnagOptions = {
         apiKey: '856ea8cf87049704dbad28042ef0aa16',
-        appVersion: '0.5.4',
+        appVersion: '0.5.5',
         releaseStage: 'production',
         notifyReleaseStages: ['production', 'staging'],
         collectUserIp: false

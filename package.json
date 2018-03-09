@@ -1,6 +1,6 @@
 {
   "name": "bulkpinner",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "description": "An application that allows you to pin multiple images to your Pinterest boards at once",
   "main": "index.js",
   "scripts": {

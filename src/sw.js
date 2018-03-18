@@ -16,8 +16,8 @@
  */
 
 const appCacheNames = [
-    'bulk-pinner--short-term--001',
-    'bulk-pinner--long-term--001'
+    'bulk-pinner--short-term--002',
+    'bulk-pinner--long-term--002'
 ];
 
 const appCache = [
@@ -25,25 +25,25 @@ const appCache = [
         name: appCacheNames[0],
         files: [
             '/',
-            '/index.html',
-            '/css/styles.[stylesHash].css',
-            '/js/scripts.[scriptsHash].js'
+            'index.html',
+            'css/styles.[stylesHash].css',
+            'js/scripts.[scriptsHash].js'
         ]
     },
     {
         name: appCacheNames[1],
         files: [
-            '/img/icon.png',
-            '/img/icon.svg',
-            '/img/loader.svg',
-            '/img/favicons/favicon-32x32.png',
-            '/img/favicons/favicon-16x16.png',
-            '/vendor/error-capture.js',
-            '/vendor/icofont/css/icofont.css',
-            '/vendor/icofont/fonts/icofont.eot',
-            '/vendor/icofont/fonts/icofont.svg',
-            '/vendor/icofont/fonts/icofont.ttf',
-            '/vendor/icofont/fonts/icofont.woff',
+            'img/icon.png',
+            'img/icon.svg',
+            'img/loader.svg',
+            'img/favicons/favicon-32x32.png',
+            'img/favicons/favicon-16x16.png',
+            'vendor/error-capture.js',
+            'vendor/icofont/css/icofont.css',
+            'vendor/icofont/fonts/icofont.eot',
+            'vendor/icofont/fonts/icofont.svg',
+            'vendor/icofont/fonts/icofont.ttf',
+            'vendor/icofont/fonts/icofont.woff',
             'https://fonts.googleapis.com/css?family=Istok+Web|Lora',
             'https://fonts.gstatic.com/s/lora/v12/0QIvMX1D_JOuMwr7Iw.woff2',
             'https://fonts.gstatic.com/s/istokweb/v11/3qTvojGmgSyUukBzKslpBmt_.woff2',

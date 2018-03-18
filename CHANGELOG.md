@@ -1,3 +1,7 @@
+# 1.0.2
+
+Fixed URLs of items to cache to be relative
+
 # 1.0.1
 
 Fixed the URL to the service worker so it's relative

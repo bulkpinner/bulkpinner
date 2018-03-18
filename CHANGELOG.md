@@ -1,4 +1,8 @@
-# 0.6.0
+# 1.0.1
+
+Fixed the URL to the service worker so it's relative
+
+# 1.0.0
 
 ## Improvements
 

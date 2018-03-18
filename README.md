@@ -1,26 +1,40 @@
-# Bulk Pinner
+Bulk Pinner
+======================
+An application that allows you to upload multiple images to multiple Pinterest boards at once!
 
-An application allowing users to create multiple pins in bulk
+![Imgur](https://i.imgur.com/dWZ5hpL.png)
 
-## Version Numbers
+## Demo
 
-The version numbers work like this
+Check out how much faster uploading just 10 images is!
 
-**A . B . C**
+[![Demo](https://i.imgur.com/2QkFPVo.png)](https://www.youtube.com/watch?v=E-NItREQ92M)
 
-**A** = Major version updates
+## How to Use
 
-This will include things like UI overall, major new feature e.g. being able to create a new board from the app
+1. Visit the application website (https://bulkpinner.github.io/site/)
+2. Authorize the application to read/write to your Pinterest
+3. Choose images you wish to pin
+4. Fill out the details for the images that are about to be pinned
+5. Choose which board/s the images are to be sent to
+6. Click Pin!
 
-**B** = Minor version updates
+## Tips and tricks
 
-This will include things that are niceties, but nothing to write home about. E.g. adding/changing an icon, adding a link etc.
+### Keyboard shortcuts
 
-**C** = Bug fixes
+Type `?` to view the keyboard shortcuts
 
-These releases include just bug fixes, and therefore don't increase the overall version number
+**The keyboard shortcut you'll likely use more than any**
 
-*N.B. Both A and B can include bug fixes too, but they wouldn't change the version number. 
-E.g. If there is a new major feature added, then A would increased from 1 to 2.
- If there are also some bug fixes, that wouldn't be represented in the number at all, it would just 
- be noted int he changelog*
+Type `>` then `>` then `>` (press and hold `SHIFT`, then type `.` 3 tmes) - This will populate the note and link fields in all Pin Previews with the value in the first Pin Preview
+
+## A Bit More Detail
+
+Check out the Medium post I wrote that goes in to a bit more detail on using Bulk Pinner
+
+[View article](https://medium.com/@denno020/upload-multiple-images-to-pinterest-at-once-3fb0ec3737ea)
+
+## Error Monitoring
+
+Error monitoring is provided by Bugsnag

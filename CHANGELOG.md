@@ -1,3 +1,7 @@
+# 1.0.3
+
+Fixed bad URL preloading the scripts file
+
 # 1.0.2
 
 Fixed URLs of items to cache to be relative

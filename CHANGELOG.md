@@ -1,3 +1,11 @@
+# 0.6.0
+
+## Improvements
+
+**Added a service worker!**
+
+The service worker will make the application load *much* faster on repeat visits
+
 # 0.5.5
 
 ## Bug Fixes

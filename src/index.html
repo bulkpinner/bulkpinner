@@ -14,7 +14,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Facebook information -->
-  <meta property="og:title" content="Bulk Pinner [Beta]">
+  <meta property="og:title" content="Bulk Pinner">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bulkpinner.github.io/site/">
   <meta property="og:image" content="img/icon.png">
@@ -28,7 +28,7 @@
 
   <!-- Twitter information -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Bulk Pinner [Beta]">
+  <meta name="twitter:title" content="Bulk Pinner">
   <meta name="twitter:description" content="An application that allows you to pin multiple images to your Pinterest boards at once">
 
   <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png">
@@ -43,16 +43,19 @@
   <meta name="pinterest" content="nopin" />
   <meta itemprop="logo" content="img/logo.png">
 
-  <link rel="preload" href="css/styles.css" as="style">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.[[stylesHash]].css">
 
-  <link rel="preload" href="//allyoucan.cloud/cdn/icofont/1.0.0beta/css/icofont.css" crossorigin="anonymous" as="style">
+  <link rel="preload" href="vendor/icofont/css/icofont.css" as="style">
+  <link rel="preload" href="vendor/icofont/fonts/icofont.eot" as="font">
+  <link rel="preload" href="vendor/icofont/fonts/icofont.svg" as="font">
+  <link rel="preload" href="vendor/icofont/fonts/icofont.ttf" as="font">
+  <link rel="preload" href="vendor/icofont/fonts/icofont.woff" as="font">
   <link rel="preload" href="//assets.pinterest.com/sdk/sdk.js" as="script"/>
-  <link rel="preload" href="js/scripts.js" as="script"/>
+  <link rel="preload" href="scripts.[[scriptsHash]].js" as="script"/>
   <link rel="preload" href="img/loader.svg" as="image"/>
   <link href="https://fonts.googleapis.com/css?family=Istok+Web|Lora" rel="stylesheet">
 
-  <script src="vendor/error-capture.js"></script>
+  <script src="vendor/error-capture.js" async></script>
 
   <script type="application/ld+json">
     {
@@ -79,7 +82,7 @@
       Disconnect
     </button>
   </div>
-  <h1 itemprop="name" class="application-name">Bulk Pinner [Beta]</h1>
+  <h1 itemprop="name" class="application-name">Bulk Pinner</h1>
   <div class="description">
     An application that allows you to pin multiple images to your Pinterest boards at once
   </div>
@@ -135,7 +138,7 @@
 <footer>
   <div class="links-container">
     <div class="version" itemprop="softwareVersion">
-      <a href="https://github.com/bulkpinner/bulkpinner/blob/master/CHANGELOG.md" target="_blank">Version 0.5.5</a>
+      <a href="https://github.com/bulkpinner/bulkpinner/blob/master/CHANGELOG.md" target="_blank">Version [[applicationVersion]]</a>
     </div>
     <div class="privacy-policy-link-container">
       <a href="#" class="privacy-policy-link">Privacy Policy</a>
@@ -300,8 +303,18 @@
   </div>
 </template>
 
-<link rel="stylesheet" href="//allyoucan.cloud/cdn/icofont/1.0.0beta/css/icofont.css" crossorigin="anonymous">
+<link rel="stylesheet" href="vendor/icofont/css/icofont.css">
+<link rel="font" href="vendor/icofont/fonts/icofont.eot">
+<link rel="font" href="vendor/icofont/fonts/icofont.svg">
+<link rel="font" href="vendor/icofont/fonts/icofont.ttf">
+<link rel="font" href="vendor/icofont/fonts/icofont.woff">
 <script src="//assets.pinterest.com/sdk/sdk.js"></script>
-<script src="js/scripts.js"></script>
+<script src="js/scripts.[[scriptsHash]].js"></script>
+
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js');
+    }
+</script>
 </body>
 </html>

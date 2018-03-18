@@ -40,7 +40,7 @@ if (window.navigator.userAgent.indexOf("MSIE") > 0 || !!navigator.userAgent.matc
 
     const bugsnagOptions = {
         apiKey: '856ea8cf87049704dbad28042ef0aa16',
-        appVersion: '0.5.5',
+        appVersion: '[[applicationVersion]]',
         releaseStage: 'production',
         notifyReleaseStages: ['production', 'staging'],
         collectUserIp: false
@@ -50,5 +50,8 @@ if (window.navigator.userAgent.indexOf("MSIE") > 0 || !!navigator.userAgent.matc
         bugsnagOptions.releaseStage = 'developer';
     }
 
-    window.bugsnagClient = bugsnag(bugsnagOptions)
+    // Now that the error-capture.js file is loaded asynchronously, need to wait until the page has loaded before initialising
+    window.addEventListener('load', () => {
+        window.bugsnagClient = bugsnag(bugsnagOptions)
+    })
 }

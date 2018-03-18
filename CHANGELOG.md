@@ -1,3 +1,7 @@
+# 1.0.4
+
+Fixed further bad URLs
+
 # 1.0.3
 
 Fixed bad URL preloading the scripts file

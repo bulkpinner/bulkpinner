@@ -18,6 +18,7 @@
 .action-button {
   @include button-default('small');
   white-space: nowrap;
+  padding-left: 30px;
 
   // The following is required before the Balloon.css library isn't working properly for the tooltip on this particular button
   &::before {
@@ -71,6 +72,90 @@
       &:nth-child(#{$i+2}) {
         transition-delay: 50ms * $i;
       }
+    }
+  }
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(calc(-50% - 1px));
+    display: inline-block;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 15px;
+      height: 15px;
+    }
+  }
+}
+
+.action-menu-toggle {
+  .icon {
+    &::before {
+      background: svg-icon(icon-navigation-menu($colour-black));
+    }
+  }
+}
+
+.refresh-boards {
+  .icon {
+    &::before {
+      background: svg-icon(icon-refresh($colour-black));
+      transition: transform ease 200ms;
+    }
+  }
+
+  &:hover {
+    .icon {
+      &::before {
+        transform: rotate(90deg);
+        transition: transform ease 200ms;
+      }
+    }
+  }
+
+  &:active {
+    .icon {
+      &::before {
+        transform: rotate(359deg);
+        transition: transform ease 500ms;
+      }
+    }
+  }
+}
+
+.clear-completed {
+  .icon {
+    transition: transform ease 200ms;
+
+    &::before {
+      background: svg-icon(icon-close-line($colour-black));
+    }
+  }
+
+  &:hover {
+    .icon {
+      transform: translateY(calc(-50% - 1px)) scale(1.5);
+      transition: transform ease 200ms;
+    }
+  }
+}
+
+.clear-all {
+  .icon {
+    transition: transform ease 200ms;
+
+    &::before {
+      background: svg-icon(icon-close($colour-black));
+    }
+  }
+
+  &:hover {
+    .icon {
+      transform: translateY(calc(-50% - 1px)) scale(1.5);
+      transition: transform ease 200ms;
     }
   }
 }

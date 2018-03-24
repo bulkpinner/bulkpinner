@@ -15,22 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * Utility mixins that don't warrant a file to themselves
- */
+.action-buttons {
+  position: relative;
+  max-width: 170px;
 
-@mixin upload-status {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &::before {
-    content: '';
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: width 100ms linear, height 100ms linear;
-    width: 0;
-    height: 0;
+  @media (min-width: $largeBreakpoint) {
+    max-width: inherit;
   }
 }

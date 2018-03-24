@@ -15,22 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * Utility mixins that don't warrant a file to themselves
- */
-
-@mixin upload-status {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &::before {
-    content: '';
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: width 100ms linear, height 100ms linear;
-    width: 0;
-    height: 0;
-  }
+@function svg-icon($icon) {
+  @return url('data:image/svg+xml;utf8,' + $icon);
 }

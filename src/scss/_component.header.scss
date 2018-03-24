@@ -87,6 +87,14 @@
 
     .user-action-menu-toggle {
       @include button-white(small);
+      @include icon(svg-icon(icon-navigation-menu($colour-pinterest-red)));
+      line-height: 15px;
+
+      &::before {
+        display: block;
+        width: 15px;
+        height: 15px;
+      }
     }
 
     .user-action__disconnect {

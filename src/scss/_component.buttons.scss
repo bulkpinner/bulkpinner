@@ -22,23 +22,55 @@
 .select-files-label,
 .authenticate-button {
   @include button-white();
+  position: relative;
+  padding-left: 60px;
 
-  .icofont {
-    border: 2px solid transparent;
-    border-radius: 100%;
-    padding: 2px 5px 3px;
-    transition: border 150ms linear;
+  &::before {
+    position: absolute;
+    top: 50%;
+    display: inline-block;
+    transform: translate(calc(-100% - 10px), calc(-50% - 4px));
+    transition: background-position ease 100ms;
+  }
+}
+
+.authenticate-button {
+  &::before {
+    content: '';
+    background: svg-icon(icon-lock-base($colour-pinterest-red)) no-repeat center bottom 2px, svg-icon(icon-lock-top($colour-pinterest-red))  no-repeat center 3px;
+    background-size: 23px auto, 16px auto;
+    width: 20px;
+    height: 32px;
   }
 
   &:hover {
-    .icofont {
-      border: 2px solid $colour-pinterest-red;
+    &::before {
+      background-position: center bottom, center top;
+      transition: background-position ease 100ms;
     }
   }
 }
 
 .select-files-label {
-  .icofont {
-    margin-right: 5px;
+  &::before {
+    width: 23px;
+    height: 30px;
+    content: '';
+    background: svg-icon(icon-upload-base($colour-pinterest-red)) no-repeat center bottom, svg-icon(icon-upload-arrow($colour-pinterest-red))  no-repeat center 7px;
+    background-size: 23px auto, 17px auto;
+  }
+
+  &:hover {
+    &::before {
+      background-position: center bottom, center 4px;
+      transition: background-position ease 100ms;
+    }
+  }
+
+  &:active {
+    &::before {
+      background-position: center bottom, center -17px;
+      transition: background-position ease 100ms;
+    }
   }
 }

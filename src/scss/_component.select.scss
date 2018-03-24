@@ -19,11 +19,15 @@
   position: relative;
 
   &::after {
-    @include icon-font('\eb73');
+    content: '';
+    background: svg-icon(icon-simple-down($colour-black));
     position: absolute;
     top: 5px;
     right: 5px;
     pointer-events: none;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
   }
 
   select {

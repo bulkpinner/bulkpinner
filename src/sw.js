@@ -16,7 +16,7 @@
  */
 
 const appCacheNames = [
-    'bulk-pinner--short-term--003',
+    'bulk-pinner--short-term--004',
     'bulk-pinner--long-term--003'
 ];
 

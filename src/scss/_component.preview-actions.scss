@@ -13,8 +13,12 @@
     outline: none;
     cursor: pointer;
 
-    i {
-      pointer-events: none;
+    &::before {
+      background: svg-icon(icon-simple-down($colour-grey));
+      content: '';
+      display: inline-block;
+      width: 30px;
+      height: 30px;
     }
   }
 
@@ -56,6 +60,23 @@
 
     &:hover {
       background-color: $colour-soft-white;
+    }
+  }
+
+  .action__use-filename {
+    position: relative;
+    padding-left: 40px;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+      content: '';
+      background: svg-icon(icon-attachment($colour-black));
+      display: inline-block;
+      width: 20px;
+      height: 20px;
     }
   }
 }

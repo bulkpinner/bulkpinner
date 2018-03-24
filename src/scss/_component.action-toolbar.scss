@@ -66,19 +66,38 @@
     }
   }
 
-  .action-buttons {
-    position: relative;
-    max-width: 170px;
-
-    @media (min-width: $largeBreakpoint) {
-      max-width: inherit;
-    }
-  }
-
   .send-to-pinterest {
     @include button-red('large');
+    position: relative;
     float: right;
-    padding-left: 20px;
+    padding-left: 55px;
     white-space: nowrap;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      transform: translateY(calc(-50% + 1px)) rotate(-30deg);
+      left: 25px;
+      content: '';
+      background: svg-icon(icon-tack-pin($colour-white)) no-repeat;
+      width: 15px;
+      height: 28px;
+      display: inline-block;
+      transition: transform ease 200ms;
+    }
+
+    &:hover {
+      &::before {
+        transform: translateY(calc(-50% + 1px)) rotate(0);
+        transition: transform ease 200ms;
+      }
+    }
+
+    &:active {
+      &::before {
+        background-position: center 12px;
+        transition: background-position ease 200ms;
+      }
+    }
   }
 }

@@ -18,12 +18,13 @@
 @import 'settings.colours';
 @import 'settings.fonts';
 @import 'settings.media-queries';
+@import 'settings.svg-icons';
 
 @import 'tools.animations';
 @import 'tools.classes';
+@import 'tools.functions';
 @import 'tools.mixins';
 @import 'tools.mixins-buttons';
-@import 'tools.mixins-typography';
 @import 'tools.vendors';
 
 @import 'generic.reset';
@@ -35,6 +36,7 @@
 @import 'element.tables';
 
 @import 'component.action-button';
+@import 'component.action-buttons';
 @import 'component.action-toolbar';
 @import 'component.application-container';
 @import 'component.buttons';

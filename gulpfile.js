@@ -16,6 +16,11 @@ const packageJson = require('./package.json');
 
 const hashManifest = {};
 
+const options = {
+    jsFilename: (args.dev) ? 'scripts.js' : 'scripts.[hash].js',
+    cssFilename: (args.dev) ? 'styles{ext}' : 'styles.{hash}{ext}'
+};
+
 gulp.task('clean-css',  () => {
     return gulp.src('dist/css')
         .pipe(plugins.clean());
@@ -33,13 +38,13 @@ gulp.task('sass', ['clean-css'], () => {
         .pipe(plugins.autoprefixer())
         .pipe(plugins.if(!args.dev, plugins.cleanCss()))
         .pipe(hash({
-            "format": "styles.{hash}{ext}"
+            "format": options.cssFilename
         }))
         .pipe(plugins.intercept((file) => {
             const fileParts = file.path.split('\\');
-            const filename = fileParts[fileParts.length - 1]
+            const filename = fileParts[fileParts.length - 1];
             const hash = filename.split('.')[1];
-            hashManifest.styles = hash;
+            hashManifest.styles = `.${hash}`;
             return file;
         }))
         // .pipe(plugins.concat('styles.' + hashManifest.styles + '.css'))
@@ -69,8 +74,8 @@ gulp.task('js', ['clean-js'], () => {
     webpackPlugins.push(function () {
         this.plugin('done', stats => {
             const assetsByChunkName = stats.toJson().assetsByChunkName.main;
-            const scriptParts = assetsByChunkName[0].split('.')
-            hashManifest.scripts = scriptParts[1];
+            const scriptParts = assetsByChunkName[0].split('.');
+            hashManifest.scripts = `.${scriptParts[1]}`;
         });
     });
 
@@ -100,7 +105,7 @@ gulp.task('js', ['clean-js'], () => {
                 }]
             },
             output: {
-                filename: 'scripts.[hash].js'
+                filename: options.jsFilename
             }
         }, webpack))
         .pipe(plugins.replace('[[applicationVersion]]', () => {
@@ -111,11 +116,11 @@ gulp.task('js', ['clean-js'], () => {
 
 gulp.task('html', ['js', 'sass'], () => {
     return gulp.src('src/index.html')
-        .pipe(plugins.replace('[[scriptsHash]]', () => {
-            return hashManifest.scripts;
+        .pipe(plugins.replace('.[[scriptsHash]]', () => {
+            return (args.dev) ? '' : hashManifest.scripts;
         }))
-        .pipe(plugins.replace('[[stylesHash]]', () => {
-            return hashManifest.styles;
+        .pipe(plugins.replace('.[[stylesHash]]', () => {
+            return (args.dev) ? '' : hashManifest.styles;
         }))
         .pipe(plugins.replace('[[applicationVersion]]', () => {
             return packageJson.version;
@@ -128,9 +133,14 @@ gulp.task('other', () => {
         .pipe(gulp.dest('dist'))
 });
 
-gulp.task('images', () => {
+gulp.task('clean-images', () => {
+    return gulp.src('dist/img')
+        .pipe(plugins.clean());
+});
+
+gulp.task('images', ['clean-images'], () => {
     return gulp.src('src/img/**/*')
-    .pipe(gulp.dest('dist/img'))
+        .pipe(gulp.dest('dist/img'))
 });
 
 /**
@@ -145,10 +155,10 @@ gulp.task('vendorFiles', () => {
 
 gulp.task('generate-service-worker', ['js', 'sass'], () => {
     return gulp.src(['src/sw.js'])
-        .pipe(plugins.replace('[scriptsHash]', () => {
+        .pipe(plugins.replace('.[scriptsHash]', () => {
             return hashManifest.scripts;
         }))
-        .pipe(plugins.replace('[stylesHash]', () => {
+        .pipe(plugins.replace('.[stylesHash]', () => {
             return hashManifest.styles;
         }))
         .pipe(gulp.dest('dist'))
@@ -178,5 +188,9 @@ gulp.task('default', ['build'], function () {
         gulp.watch([
             "src/sw.js"
         ], ['generate-service-worker']);
+
+        gulp.watch([
+            "src/img/**/*"
+        ], ['images']);
     }
 });

@@ -1,3 +1,9 @@
+# 1.1.0
+
+Removed the iconfont that was really weighing the page down, and replaced with SVGs
+
+Updated the SVG's with some much nicer animations
+
 # 1.0.4
 
 Fixed further bad URLs

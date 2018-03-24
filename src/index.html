@@ -45,11 +45,6 @@
 
   <link rel="stylesheet" href="css/styles.[[stylesHash]].css">
 
-  <link rel="preload" href="vendor/icofont/css/icofont.css" as="style">
-  <link rel="preload" href="vendor/icofont/fonts/icofont.eot" as="font">
-  <link rel="preload" href="vendor/icofont/fonts/icofont.svg" as="font">
-  <link rel="preload" href="vendor/icofont/fonts/icofont.ttf" as="font">
-  <link rel="preload" href="vendor/icofont/fonts/icofont.woff" as="font">
   <link rel="preload" href="//assets.pinterest.com/sdk/sdk.js" as="script"/>
   <link rel="preload" href="js/scripts.[[scriptsHash]].js" as="script"/>
   <link rel="preload" href="img/loader.svg" as="image"/>
@@ -74,10 +69,8 @@
     <img src="https://camo.githubusercontent.com/c6286ade715e9bea433b4705870de482a654f78a/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f77686974655f6666666666662e706e67"
          alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png">
   </a>
-  <div class="user-actions-container">
-    <button class="user-action-btn user-action-menu-toggle">
-      <i class="icofont icofont-navigation-menu"></i>
-    </button>
+  <div class="user-actions-container hidden">
+    <button class="user-action-btn user-action-menu-toggle"></button>
     <button class="user-action-btn user-action__disconnect" title="Disconnect current Pinterest account">
       Disconnect
     </button>
@@ -88,12 +81,12 @@
   </div>
 
   <div class="authentication-container hidden">
-    <button class="authenticate-button"><i class="icofont icofont-lock"></i> Authorize</button>
+    <button class="authenticate-button">Authorize</button>
   </div>
   <div class="image-select-container hidden">
     <div class="file-upload">
       <input type="file" name="fileToUpload" id="fileToUpload" multiple hidden>
-      <label for="fileToUpload" class="select-files-label"><i class="icofont icofont-upload-alt"></i> <span class="label-text">Choose Images</span></label>
+      <label for="fileToUpload" class="select-files-label"><span class="label-text">Choose Images</span></label>
     </div>
   </div>
 </header>
@@ -105,16 +98,16 @@
     <div class="action-toolbar">
       <div class="action-buttons">
         <button class="action-menu-toggle action-button">
-          <i class="icofont icofont-navigation-menu"></i> Actions
+          <i class="icon"></i> Actions
         </button>
         <button class="refresh-boards action-button" data-balloon="Load latest list of boards from Pinterest" data-balloon-pos="top">
-          <i class="icofont icofont-refresh"></i> Refresh Boards
+          <i class="icon"></i> Refresh Boards
         </button>
         <button class="clear-completed action-button" data-balloon="Clear all images uploaded to Pinterest" data-balloon-pos="top">
-          <i class="icofont icofont-close-line"></i> Clear Completed
+          <i class="icon"></i> Clear Completed
         </button>
         <button class="clear-all action-button" data-balloon="Clear all images" data-balloon-pos="top">
-          <i class="icofont icofont-close"></i> Clear All
+          <i class="icon"></i> Clear All
         </button>
       </div>
 
@@ -127,7 +120,7 @@
         </div>
       </div>
       <button class="send-to-pinterest">
-        <i class="icofont icofont-tack-pin"></i> Pin
+        Pin
       </button>
     </div>
     <div class="pins-container">
@@ -160,7 +153,7 @@
         <h1>Privacy Policy</h1>
       </div>
       <div class="modal-close">
-        <a href="#" class="close"><i class="icofont icofont-close"></i></a>
+        <a href="#" class="close"></a>
       </div>
     </div>
     <div class="modal-content">
@@ -208,7 +201,7 @@
         <h1>Keyboard Shortcuts</h1>
       </div>
       <div class="modal-close">
-        <a href="#" class="close"><i class="icofont icofont-close"></i></a>
+        <a href="#" class="close"></a>
       </div>
     </div>
     <div class="modal-content">
@@ -262,12 +255,10 @@
   <div class="preview-container">
     <div class="preview-inner-container">
       <div class="preview-actions-container">
-        <button class="preview-action-btn">
-          <i class="icofont icofont-simple-down"></i>
-        </button>
+        <button class="preview-action-btn"></button>
 
         <ul class="preview-actions">
-          <li class="preview-action" data-action="filename">Use Filename</li>
+          <li class="preview-action action__use-filename" data-action="filename">Use Filename</li>
         </ul>
       </div>
       <div class="preview-image-container">
@@ -289,25 +280,14 @@
         </div>
       </div>
       <div class="image-uploading-container">
-        <div class="loading-animation">
-          <i class="icofont icofont-spinner-alt-6"></i>
-        </div>
+        <div class="loading-animation"></div>
       </div>
-      <div class="uploaded-icon">
-        <i class="icofont icofont-tick-mark"></i>
-      </div>
-      <div class="error-icon" title="There was an error creating this pin. You can retry by clicking the Pin button again.">
-        <i class="icofont icofont-exclamation-tringle"></i>
-      </div>
+      <div class="uploaded-icon"></div>
+      <div class="error-icon" title="There was an error creating this pin. You can retry by clicking the Pin button again."></div>
     </div>
   </div>
 </template>
 
-<link rel="stylesheet" href="vendor/icofont/css/icofont.css">
-<link rel="font" href="vendor/icofont/fonts/icofont.eot">
-<link rel="font" href="vendor/icofont/fonts/icofont.svg">
-<link rel="font" href="vendor/icofont/fonts/icofont.ttf">
-<link rel="font" href="vendor/icofont/fonts/icofont.woff">
 <script src="//assets.pinterest.com/sdk/sdk.js"></script>
 <script src="js/scripts.[[scriptsHash]].js"></script>
 

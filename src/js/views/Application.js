@@ -39,6 +39,8 @@ export default class Application {
         this.modalOverlay = document.querySelector('.modal-overlay');
         this.clearButton    = document.querySelector(".clear-completed");
         this.clearAllButton = document.querySelector(".clear-all");
+        this.userActionMenuToggle = document.querySelector('.user-action-menu-toggle');
+        this.userActionsContainer = document.querySelector('.user-actions-container');
         this.pinPreviews = [];
 
         // Wait until the user is authenticated before showing the main application interface
@@ -61,6 +63,7 @@ export default class Application {
      */
     showApplicationContainer() {
         this.imageSelectContainer.classList.toggle('hidden', false);
+        this.userActionsContainer.classList.toggle('hidden', false);
     }
 
     /**
@@ -162,8 +165,8 @@ export default class Application {
         });
 
         // @TODO This will need to be refactored - create an action menu class that will work for both the user actions and app actions
-        document.querySelector('.user-action-menu-toggle').addEventListener('click', e => {
-            document.querySelector('.user-actions-container').classList.toggle('show-menu');
+        this.userActionMenuToggle.addEventListener('click', e => {
+            this.userActionsContainer.classList.toggle('show-menu');
         });
 
         document.querySelector('.user-action__disconnect').addEventListener('click', e => {

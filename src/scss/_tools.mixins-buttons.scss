@@ -64,3 +64,11 @@
   background-color: $colour-blue;
   color: $colour-white;
 }
+
+@mixin icon($icon) {
+  &::before {
+    content: '';
+    background: $icon no-repeat;
+    background-size: contain;
+  }
+}

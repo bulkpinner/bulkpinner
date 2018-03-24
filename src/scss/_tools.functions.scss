@@ -18,3 +18,18 @@
 @function svg-icon($icon) {
   @return url('data:image/svg+xml;utf8,' + $icon);
 }
+
+/**
+ * There is a bug in Firefox that doesn't allow inline SVG's to have '#' in the code
+ * This function will replace the '#' with it's encoded equivalent '%23'
+ * Ref: https://gist.github.com/certainlyakey/e9c0d8f5c87ff47e3d5b and https://codepen.io/geoffyuen/pen/zGKQQW
+ */
+@function encode-color($string) {
+  @if type-of($string) == 'color' {
+    $hex: str-slice(ie-hex-str($string), 4);
+    $string: unquote("#{$hex}");
+  }
+
+  $string: '%23' + $string;
+  @return $string;
+}

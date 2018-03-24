@@ -1,3 +1,7 @@
+# 1.1.1
+
+Fixed bug in Firefox with inline SVG's
+
 # 1.1.0
 
 Removed the iconfont that was really weighing the page down, and replaced with SVGs

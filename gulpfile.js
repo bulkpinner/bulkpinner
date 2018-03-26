@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const args = require('yargs').argv;
 const path = require('path');
 const hash = require('gulp-hash-filename');
+const critical = require('critical').stream;
 // All gulp plugins are automatically loaded into this constant, provided they're in package.json
 const plugins = require('gulp-load-plugins')({
     rename: {
@@ -116,6 +117,7 @@ gulp.task('js', ['clean-js'], () => {
 
 gulp.task('html', ['js', 'sass'], () => {
     return gulp.src('src/index.html')
+        .pipe(plugins.if(args.debug, plugins.debug({title: 'HTML'})))
         .pipe(plugins.replace('.[[scriptsHash]]', () => {
             return (args.dev) ? '' : hashManifest.scripts;
         }))
@@ -125,6 +127,11 @@ gulp.task('html', ['js', 'sass'], () => {
         .pipe(plugins.replace('[[applicationVersion]]', () => {
             return packageJson.version;
         }))
+        .pipe(plugins.if(args.debug, plugins.debug({title: 'CRITICAL'})))
+        .pipe(plugins.if(!args.dev, critical({base: 'dist/', inline: true, css: ['dist/css/styles' + hashManifest.styles + '.css']})))
+        .on('error', function(err) {
+            plugins.util.log(plugins.util.colors.red(err.message));
+        })
         .pipe(gulp.dest('dist'))
 });
 

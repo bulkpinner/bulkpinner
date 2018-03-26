@@ -1,3 +1,7 @@
+# 1.2.0
+
+Implemented CriticalCSS to make initial loading faster
+
 # 1.1.2
 
 Made use of font-display to progressively load the web font

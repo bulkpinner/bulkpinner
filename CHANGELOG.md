@@ -1,3 +1,7 @@
+# 1.1.2
+
+Made use of font-display to progressively load the web font
+
 # 1.1.1
 
 Fixed bug in Firefox with inline SVG's

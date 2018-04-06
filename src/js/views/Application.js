@@ -194,9 +194,9 @@ export default class Application {
      * @returns {null}
      */
     clearAll() {
+        this.pinPreviews = [];
         const previewPins = document.querySelectorAll(".preview-container");
         this.clear(previewPins);
-        this.pinPreviews = [];
     }
 
     /**

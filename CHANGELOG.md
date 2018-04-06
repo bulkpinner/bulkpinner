@@ -1,3 +1,7 @@
+# 1.2.1
+
+Fixed some bugs around Google Adsense
+
 # 1.2.0
 
 Implemented CriticalCSS to make initial loading faster

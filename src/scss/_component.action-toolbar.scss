@@ -25,12 +25,22 @@
   z-index: 99;
 
   &.sticky {
+    @media (min-width: $mobileBreakpoint) {
+      position: fixed;
+      padding: 10px 30px;  // Match the padding around the application container
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+    }
+  }
+
+  @media (max-width: $mobileBreakpoint) {
     position: fixed;
-    padding: 10px 30px;  // Match the padding around the application container
-    top: 0;
+    top: 64px;
     left: 0;
     right: 0;
-    z-index: 999;
+    padding: 15px;
   }
 
   .send-all-to-board {
@@ -48,8 +58,12 @@
       flex-direction: column;
     }
 
-    @media (max-width: 570px) {
+    @media (min-width: $mobileBreakpoint) and (max-width: 570px) {
       padding: 0 15px;
+    }
+
+    @media (max-width: $mobileBreakpoint) {
+      padding: 0 15px 0 0;
     }
 
     .select-container {

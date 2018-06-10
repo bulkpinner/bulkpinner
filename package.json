@@ -1,12 +1,13 @@
 {
   "name": "bulkpinner",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "An application that allows you to pin multiple images to your Pinterest boards at once",
   "main": "index.js",
   "repository": "https://github.com/bulkpinner/bulkpinner",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "http-server dist --ssl",
+    "start": "concurrently \"npm run server\" \"npm run dev\" ",
+    "server": "http-server dist --ssl",
     "deploy": "gulp --deploy",
     "dev": "gulp --dev"
   },
@@ -21,6 +22,7 @@
     "balloon-css": "^0.5.0",
     "browser-sync": "^2.13.0",
     "bullet-pubsub": "^2.3.0",
+    "concurrently": "^3.5.1",
     "critical": "^1.2.1",
     "debounce": "^1.1.0",
     "gulp": "^3.9.1",

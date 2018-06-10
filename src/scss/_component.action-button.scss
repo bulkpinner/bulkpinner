@@ -31,13 +31,23 @@
   }
 
   + .action-button {
-    @media (min-width: 1180px) {
+    @media (min-width: $mobileBreakpoint) {
       margin-left: 10px;
     }
   }
 
   &.action-menu-toggle {
-    @media (min-width: 1180px) {
+    @media (max-width: $mobileBreakpoint) {
+      font-size: 0;
+      padding: 8px;
+
+      .icon {
+        position: inherit;
+        transform: none;
+      }
+    }
+
+    @media (min-width: $mobileBreakpoint) {
       display: none;
     }
   }
@@ -50,7 +60,7 @@
     display: block;
     z-index: 10;
 
-    @media (min-width: 1180px) {
+    @media (min-width: $mobileBreakpoint) {
       opacity: 1;
       transform: translateY(0);
       pointer-events: all;

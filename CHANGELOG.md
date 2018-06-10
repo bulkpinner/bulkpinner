@@ -1,3 +1,17 @@
+# 1.3.0
+
+## Improvements
+
+UI update for the application when on mobile
+
+Keyboard shortcuts should now be more obvious when on a desktop computer
+
+Added manifest file so the app can now be added to your homescreen
+
+Auto-fill action is now available on mobile
+
+You can now support development of Bulk Pinner if you would like, by using the PayPal.me link in the footer and sidebar
+
 # 1.2.1
 
 Fixed some bugs around Google Adsense

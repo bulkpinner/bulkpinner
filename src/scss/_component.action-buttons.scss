@@ -19,6 +19,12 @@
   position: relative;
   max-width: 170px;
 
+  @media (max-width: $mobileBreakpoint) {
+    position: fixed;
+    top: 14px;
+    left: 10px;
+  }
+
   @media (min-width: $largeBreakpoint) {
     max-width: inherit;
   }

@@ -28,4 +28,8 @@ body {
   &.no-scroll {
     overflow: hidden;
   }
+
+  @media (max-width: $mobileBreakpoint) {
+    padding-top: 64px;
+  }
 }

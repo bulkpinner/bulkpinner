@@ -22,6 +22,7 @@ import PinPreview from 'PinPreview';
 import Mousetrap from 'mousetrap';
 import debounce from 'debounce';
 import Analytics from 'services/Analytics';
+import Sidebar from 'views/Sidebar';
 
 /**
  * Class Application
@@ -31,17 +32,20 @@ export default class Application {
     constructor() {
         this.previewsPinsContainer = document.querySelector('.preview-pins-container');
         this.imageSelectContainer = document.querySelector(".image-select-container");
-        this.refreshBoardsButton = document.querySelector('.refresh-boards');
         this.pinsContainer = document.querySelector('.pins-container');
         this.sendToPinterestButton = document.querySelector('.send-to-pinterest');
         this.sendAllToBoardSelect = document.getElementById('send-all-to-board');
         this.fileUploadInput = document.getElementById("fileToUpload");
         this.modalOverlay = document.querySelector('.modal-overlay');
-        this.clearButton    = document.querySelector(".clear-completed");
-        this.clearAllButton = document.querySelector(".clear-all");
         this.userActionMenuToggle = document.querySelector('.user-action-menu-toggle');
         this.userActionsContainer = document.querySelector('.user-actions-container');
+        this.refreshBoardsButtons = document.querySelectorAll('.action__refresh-boards');
+        this.clearButtons    = document.querySelectorAll(".action__clear-completed");
+        this.clearAllButtons = document.querySelectorAll(".action__clear-all");
+        this.disconnectButtons = document.querySelectorAll('.action__disconnect');
         this.pinPreviews = [];
+
+        this.sidebar = new Sidebar('.sidebar');
 
         // Wait until the user is authenticated before showing the main application interface
         CustomEvent.on('user-authenticated', () => {
@@ -79,25 +83,40 @@ export default class Application {
      * @returns {null}
      */
     attachListeners() {
-        this.refreshBoardsButton.addEventListener('click', () => {
-            Application.ToggleActionMenu(false);
-            this.loadBoards(true)
-            .then(boards => {
-                this.populateBoardNames(boards);
-            })
-            .catch(response => {
-                console.error(response);
+        for (let i = 0 ; i < this.refreshBoardsButtons.length ; i++) {
+            let button = this.refreshBoardsButtons[i];
+            button.addEventListener('click', e => {
+                e.preventDefault();
+                this.toggleActionMenu(false);
+                this.loadBoards(true)
+                    .then(boards => {
+                        this.populateBoardNames(boards);
+                    })
+                    .catch(response => {
+                        console.error(response);
+                    });
+                Analytics.FeatureUsed('refresh_boards');
+                this.toggleActionMenu(false);
             });
-            Analytics.FeatureUsed('refresh_boards');
-        });
+        }
 
-        this.clearButton.addEventListener('click', e => {
-            this.clearCompleted();
-        });
+        for (let j = 0 ; j < this.clearButtons.length ; j++) {
+            let button = this.clearButtons[j];
+            button.addEventListener('click', e => {
+                e.preventDefault();
+                this.clearCompleted();
+                this.toggleActionMenu(false);
+            });
+        }
 
-        this.clearAllButton.addEventListener('click', e => {
-            this.clearAll();
-        });
+        for ( let k = 0 ; k < this.clearAllButtons.length ; k++) {
+            let button = this.clearAllButtons[k];
+            button.addEventListener('click', e => {
+                e.preventDefault();
+                this.clearAll();
+                this.toggleActionMenu(false);
+            })
+        }
 
         this.pinsContainer.addEventListener('blur', e => {
             if (e.target.matches('.note')) {
@@ -112,7 +131,11 @@ export default class Application {
                     pinPreview.hidePreviewActions();
                 }
             });
-            Application.ToggleActionMenu(false);
+            this.toggleActionMenu(false);
+
+            if (e.target.matches('.paypal-me-link')) {
+                Analytics.LinkClicked('paypal-me');
+            }
         });
 
         this.sendToPinterestButton.addEventListener('click', () => {
@@ -161,7 +184,7 @@ export default class Application {
 
         document.querySelector('.action-menu-toggle').addEventListener('click', (e) => {
             e.stopImmediatePropagation();
-            Application.ToggleActionMenu();
+            this.toggleActionMenu();
         });
 
         // @TODO This will need to be refactored - create an action menu class that will work for both the user actions and app actions
@@ -169,11 +192,27 @@ export default class Application {
             this.userActionsContainer.classList.toggle('show-menu');
         });
 
-        document.querySelector('.user-action__disconnect').addEventListener('click', e => {
-            DataStore.Remove(DataStore.DATA__ACCESS_TOKEN());
-            DataStore.Remove(DataStore.DATA__BOARDS());
-            Analytics.FeatureUsed('disconnect_pinterest');
-            location.reload();
+        for (let l = 0 ; l < this.disconnectButtons.length ; l++) {
+            let button = this.disconnectButtons[l];
+            button.addEventListener('click', e => {
+                e.preventDefault();
+                DataStore.Remove(DataStore.DATA__ACCESS_TOKEN());
+                DataStore.Remove(DataStore.DATA__BOARDS());
+                Analytics.FeatureUsed('disconnect_pinterest');
+                location.reload();
+            });
+        }
+
+        document.querySelector('.action__copy-fill').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.autofillFields();
+            this.toggleActionMenu(false);
+        });
+
+        document.querySelector('.keyboard-shortcuts').addEventListener('click', (e) => {
+            e.preventDefault();
+
+            this.showKeyboardShortcuts();
         });
     }
 
@@ -213,12 +252,18 @@ export default class Application {
             document.querySelector('.page-header').classList.toggle('large', true);
             document.querySelector('.get-started').classList.toggle('hidden', false);
             document.querySelector('.application-container').classList.toggle('expanded', false);
+            document.querySelector('.image-select-container').classList.toggle('fab-container', false);
             document.querySelector('.label-text').innerText = 'Choose Images';
             document.querySelector('.preview-pins-container').classList.toggle('hidden', true);
         }
 
         this.resetSendAllToBoard();
-        Application.ToggleActionMenu(false);
+        this.toggleActionMenu(false);
+
+        // Only remove the ads container if there is no more pin previews showing
+        if (this.pinPreviews.length === 0) {
+            document.querySelector('.preview-pins-aside').remove();
+        }
     }
 
     /**
@@ -296,6 +341,7 @@ export default class Application {
         document.querySelector('.page-header').classList.toggle('large', false);
         document.querySelector('.get-started').classList.toggle('hidden', true);
         document.querySelector('.application-container').classList.toggle('expanded', true);
+        document.querySelector('.image-select-container').classList.toggle('fab-container', true);
         document.querySelector('.label-text').innerText = 'Add More Images';
         this.previewsPinsContainer.classList.toggle('hidden', false);
 
@@ -317,6 +363,11 @@ export default class Application {
                 pinPreview.attachListeners();
 
                 this.pinPreviews.push(pinPreview);
+            }
+
+            // Only activate the ads container if there isn't already one activated
+            if (!document.querySelector('.preview-pins-aside')) {
+                this.activateAdsenseTemplate();
             }
         }, 300);
     }
@@ -556,6 +607,17 @@ export default class Application {
     }
 
     /**
+     * Activate the Google Adsense HTML template
+     *
+     * @returns {null}
+     */
+    activateAdsenseTemplate() {
+        const template = document.querySelector('#adsense-template');
+        const clone = document.importNode(template.content, true);
+        document.querySelector('.preview-pins-container').insertBefore(clone, document.querySelector('.pins-container'))
+    }
+
+    /**
      * Toggle the state of the action menu
      *
      * @param {boolean|undefined} show [Optional] True/false to force show/hide the menu
@@ -563,14 +625,7 @@ export default class Application {
      *
      * @returns {null}
      */
-    static ToggleActionMenu(show = undefined) {
-        const actionButtons = document.querySelector('.action-buttons');
-
-        if (typeof show !== 'undefined') {
-            actionButtons.classList.toggle('show-menu', show);
-        } else {
-            actionButtons.classList.toggle('show-menu');
-        }
-
+    toggleActionMenu(show = undefined) {
+        this.sidebar.toggle(show);
     }
 }

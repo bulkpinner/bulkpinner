@@ -20,12 +20,17 @@
  *
  * @param string $size The size of the button. Options are 'large' or 'small'. Default is 'large'
  */
-@mixin button($size) {
+@mixin button-reset() {
   border: 0;
-  display: inline-block;
-  outline: none;
+  background-color: transparent;
+  outline: 0;
   box-shadow: none;
   cursor: pointer;
+}
+
+@mixin button($size) {
+  @include button-reset();
+  display: inline-block;
   text-align: center;
   font-family: $font-heading;
 

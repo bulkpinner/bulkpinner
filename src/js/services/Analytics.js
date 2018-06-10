@@ -60,6 +60,19 @@ export default class Analytics {
     }
 
     /**
+     * Fire an event to help track when certain links are clicked
+     *
+     * @param {string} link The label of the link that was clicked
+     *
+     * @returns {null}
+     */
+    static LinkClicked(link) {
+        Analytics.FireEvent(link, {
+            'event_category': 'links'
+        });
+    }
+
+    /**
      * Fire an event on Google Analytics
      *
      * @param {string} eventAction  The 'action' of the event to creation

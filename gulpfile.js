@@ -136,7 +136,7 @@ gulp.task('html', ['js', 'sass'], () => {
 });
 
 gulp.task('other', () => {
-    return gulp.src(['CHANGELOG.md'])
+    return gulp.src(['CHANGELOG.md', 'src/manifest.json'])
         .pipe(gulp.dest('dist'))
 });
 
@@ -199,5 +199,9 @@ gulp.task('default', ['build'], function () {
         gulp.watch([
             "src/img/**/*"
         ], ['images']);
+
+        gulp.watch([
+            "src/manifest.json"
+        ], ['other']);
     }
 });

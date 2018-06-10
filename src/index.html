@@ -10,7 +10,7 @@
 
       gtag('config', 'UA-108361590-1');
   </script>
-  <title>Bulk Pinner [Beta]</title>
+  <title>Bulk Pinner</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Facebook information -->
@@ -30,6 +30,9 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Bulk Pinner">
   <meta name="twitter:description" content="An application that allows you to pin multiple images to your Pinterest boards at once">
+
+  <!-- Web App Manifest -->
+  <link rel="manifest" href="manifest.json">
 
   <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png">
@@ -70,7 +73,7 @@
   </a>
   <div class="user-actions-container hidden">
     <button class="user-action-btn user-action-menu-toggle"></button>
-    <button class="user-action-btn user-action__disconnect" title="Disconnect current Pinterest account">
+    <button class="user-action-btn user-action__disconnect action__disconnect" title="Disconnect current Pinterest account">
       Disconnect
     </button>
   </div>
@@ -89,6 +92,53 @@
     </div>
   </div>
 </header>
+<aside class="sidebar sidebar--off-canvas">
+  <header class="sidebar-header">
+    <h2>Bulk Pinner</h2>
+    <button class="sidebar-close"></button>
+  </header>
+  <section class="sidebar-body">
+    <ul class="sidebar-links">
+      <li>
+        <a href="#" class="sidebar-link action__copy-fill">Copy-fill</a>
+        <div class="sidebar-link__description">
+          Automatically populate the descriptions and links of all pin previews with the values set in the first preview
+        </div>
+      </li>
+    </ul>
+    <ul class="sidebar-links">
+      <li>
+        <a href="#" class="sidebar-link action__refresh-boards">Refresh Boards</a>
+      </li>
+      <li>
+        <a href="#" class="sidebar-link action__clear-completed">Clear Completed</a>
+      </li>
+      <li>
+        <a href="#" class="sidebar-link action__clear-all">Clear All</a>
+      </li>
+    </ul>
+    <ul class="sidebar-links">
+      <li>
+        <a href="#" class="sidebar-link action__disconnect">Disconnect</a>
+      </li>
+    </ul>
+    <ul class="sidebar-links">
+      <li>
+        <a target="_blank" href="https://github.com/bulkpinner/bulkpinner/issues/new?title=[Bug]%20(Replace%20this%20with%20title%20of%20bug%20report)&body=Please%20include%20as%20much%20detail%20as%20possible" class="sidebar-link">Report Bug</a>
+      </li>
+      <li>
+        <a target="_blank" href="https://github.com/bulkpinner/bulkpinner/issues/new?title=[Feature%20Request]%20(Replace%20this%20with%20short%20summary%20of%20feature&body=Please%20include%20as%20much%20detail%20as%20possible" class="sidebar-link">Suggest Feature</a>
+      </li>
+      <li>
+        <a target="_blank" href="mailto:bulkpinner@gmail.com" class="sidebar-link">Contact Me</a>
+      </li>
+      <li>
+        <a target="_blank" href="https://www.paypal.me/lukedenton20" class="sidebar-link paypal-me-link">PayPal.me</a>
+      </li>
+    </ul>
+  </section>
+</aside>
+<div class="sidebar-overlay"></div>
 <section class="application-container">
   <div class="get-started">
     Get started by selecting some images to pin
@@ -99,13 +149,13 @@
         <button class="action-menu-toggle action-button">
           <i class="icon"></i> Actions
         </button>
-        <button class="refresh-boards action-button" data-balloon="Load latest list of boards from Pinterest" data-balloon-pos="top">
+        <button class="refresh-boards action-button action__refresh-boards" data-balloon="Load latest list of boards from Pinterest" data-balloon-pos="top">
           <i class="icon"></i> Refresh Boards
         </button>
-        <button class="clear-completed action-button" data-balloon="Clear all images uploaded to Pinterest" data-balloon-pos="top">
+        <button class="clear-completed action-button action__clear-completed" data-balloon="Clear all images uploaded to Pinterest" data-balloon-pos="top">
           <i class="icon"></i> Clear Completed
         </button>
-        <button class="clear-all action-button" data-balloon="Clear all images" data-balloon-pos="top">
+        <button class="clear-all action-button action__clear-all" data-balloon="Clear all images" data-balloon-pos="top">
           <i class="icon"></i> Clear All
         </button>
       </div>
@@ -125,6 +175,10 @@
     <div class="pins-container">
 
     </div>
+
+    <div class="keyboard-shortcuts-container">
+      <a href="#" class="keyboard-shortcuts no-style">Keyboard shortcuts available</a>
+    </div>
   </div>
 </section>
 <footer>
@@ -137,11 +191,16 @@
     </div>
   </div>
   <div class="contact">
-    Suggestions or issues? <a href="mailto:bulkpinner@gmail.com">Click here to email me</a> or open a <a href="https://github.com/bulkpinner/bulkpinner/issues">GitHub Issue</a>
+    Suggestions or issues? Please open a <a target="_blank" href="https://github.com/bulkpinner/bulkpinner/issues/new">GitHub Issue</a>
   </div>
   <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="email" content="bulkpinner@gmail.com">
-    Created by <span itemprop="name">Luke Denton</span>
+    <div class="author-name">
+      Created by <span itemprop="name">Luke Denton</span>
+    </div>
+    <div class="paypal-me-link-container">
+      <a href="https://www.paypal.me/lukedenton20" class="paypal-me-link" target="_blank">Support development of Bulk Pinner with PayPal.me</a>
+    </div>
   </div>
 </footer>
 

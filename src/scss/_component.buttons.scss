@@ -73,4 +73,22 @@
       transition: background-position ease 100ms;
     }
   }
+
+  @media (max-width: $largeBreakpoint) {
+    .fab-container & {
+      padding: 30px;
+      background-color: $colour-pinterest-red;
+
+      &:before {
+        background: svg-icon(icon-upload-base($colour-white)) no-repeat center bottom, svg-icon(icon-upload-arrow($colour-white))  no-repeat center 7px;
+        background-size: 23px auto, 17px auto;
+        left: 50%;
+        transform: translate(calc(-50%), calc(-50% - 4px))
+      }
+
+      .label-text {
+        display: none;
+      }
+    }
+  }
 }

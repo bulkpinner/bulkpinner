@@ -33,15 +33,48 @@
   }
 
   .preview-pins-container {
-    &.toolbar-is-sticky {
-      padding-top: 86px;
+    position: relative;
+
+    @media (max-width: $mobileBreakpoint) {
+      padding-top: 101px;
     }
 
-    .preview-pins-footer {
+    @media (min-width: $mobileBreakpoint) {
+      &.toolbar-is-sticky {
+        padding-top: 86px;
+        //margin-top: 10vh;
+      }
+    }
+
+    .preview-pins-aside {
       text-align: center;
 
       ins { // Adsense container
         margin-top: 50px
+      }
+    }
+
+    .keyboard-shortcuts-container {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+
+      @media (max-width: $mobileBreakpoint - 1) {
+        display: none;
+      }
+    }
+
+    .keyboard-shortcuts {
+      text-decoration: none;
+      color: $colour-grey;
+
+      &::after {
+        content: '';
+        background: svg-icon(icon-keyboard($colour-grey)) no-repeat;
+        width: 20px;
+        height: 12px;
+        display: inline-block;
+        margin-left: 5px;
       }
     }
   }

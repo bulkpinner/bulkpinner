@@ -1,5 +1,5 @@
 /* Bulk Pinner - Create multiple pins in your Pinterest boards at once
- * Copyright (C) 2017 Luke Denton
+ * Copyright (C) 2018 Luke Denton
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$extraLargeBreakpoint: 1380px !default;
-$mobileBreakpoint: 1180px !default;
-$largeBreakpoint: 1080px !default;
-$mediumBreakpoint: 500px !default;
+/**
+ * Styling for a floating action button
+ . The F.A.B. will only be used on mobile, so there is a media query wrapped around its styling
+ */
+
+.fab-container {
+  @media (max-width: $largeBreakpoint) {
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    z-index: 99;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+}

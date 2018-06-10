@@ -55,4 +55,16 @@ footer {
       }
     }
   }
+
+  .contact {
+    @media (max-width: $mobileBreakpoint - 1) {
+      display: none;
+    }
+  }
+
+  .support-development-link-container {
+    padding-top: 5px;
+    font-size: 0.7em;
+    line-height: 1.2em;
+  }
 }

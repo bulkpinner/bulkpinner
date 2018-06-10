@@ -32,6 +32,15 @@
   transition: max-height 300ms linear, justify-content 300ms linear;
   flex: 0 0 auto;
 
+  @media (max-width: $mobileBreakpoint - 1px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    max-height: 64px;
+  }
+
   .github-fork-link {
     position: absolute;
     top: -200%;
@@ -85,15 +94,27 @@
     transform: translateY(-50%);
     right: 15px;
 
+    @media (max-width: $mobileBreakpoint - 1px) {
+      display: none;
+    }
+
     .user-action-menu-toggle {
       @include button-white(small);
-      @include icon(svg-icon(icon-navigation-menu($colour-pinterest-red)));
+      @include icon(svg-icon(icon-gear($colour-pinterest-red)));
       line-height: 15px;
 
       &::before {
         display: block;
         width: 15px;
         height: 15px;
+        transition: transform 150ms linear;
+      }
+
+      &:hover {
+        &::before {
+          transform: rotate(45deg);
+          transition: transform 150ms linear;
+        }
       }
     }
 

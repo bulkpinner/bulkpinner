@@ -1,0 +1,29 @@
+{
+  "name": "Bulk Pinner",
+  "short_name": "BulkPinner",
+  "start_url": "https://bulkpinner.app",
+  "icons": [{
+    "src": "img/favicons/icon-128x128.png",
+    "sizes": "128x128",
+    "type": "image/png"
+  }, {
+    "src": "img/favicons/icon-144x144.png",
+    "sizes": "144x144",
+    "type": "image/png"
+  }, {
+    "src": "img/favicons/icon-152x152.png",
+    "sizes": "152x152",
+    "type": "image/png"
+  }, {
+    "src": "img/favicons/icon-192x192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }, {
+    "src": "img/favicons/icon-256x256.png",
+    "sizes": "256x256",
+    "type": "image/png"
+  }],
+  "display": "standalone",
+  "background_color": "#BD081C",
+  "theme_color": "#BD081C"
+}

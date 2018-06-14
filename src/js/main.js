@@ -19,7 +19,7 @@ import Authorization from 'views/Authorization';
 import Application from 'views/Application';
 import API from 'services/API';
 import CustomEvent from 'services/CustomEvent';
-import LogRocker from 'logrocket';
+import LogRocket from 'logrocket';
 
 // If the user is using Internet Explorer, kindly let them know that their browser is out of date, and that they should update
 if (window.navigator.userAgent.indexOf("MSIE") > 0 || !!navigator.userAgent.match(/Trident\/7\./)) {

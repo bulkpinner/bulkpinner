@@ -19,6 +19,7 @@ import Authorization from 'views/Authorization';
 import Application from 'views/Application';
 import API from 'services/API';
 import CustomEvent from 'services/CustomEvent';
+import LogRocker from 'logrocket';
 
 // If the user is using Internet Explorer, kindly let them know that their browser is out of date, and that they should update
 if (window.navigator.userAgent.indexOf("MSIE") > 0 || !!navigator.userAgent.match(/Trident\/7\./)) {
@@ -27,6 +28,8 @@ if (window.navigator.userAgent.indexOf("MSIE") > 0 || !!navigator.userAgent.matc
     document.querySelector('.modal-overlay').classList.add('ie-overlay');
     document.querySelector('.modal-overlay').querySelector('.internet-explorer-disabled').classList.remove('hidden');
 } else {
+    LogRocket.init('vki4ci/bulkpinner');
+
     // Create instances of application classes
     new Authorization();
     new Application();

@@ -1,3 +1,7 @@
+# 1.3.1
+
+Installed LogRocket in order to better track errors
+
 # 1.3.0
 
 ## Improvements

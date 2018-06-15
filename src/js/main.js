@@ -46,7 +46,11 @@ if (window.navigator.userAgent.indexOf("MSIE") > 0 || !!navigator.userAgent.matc
         appVersion: '[[applicationVersion]]',
         releaseStage: 'production',
         notifyReleaseStages: ['production', 'staging'],
-        collectUserIp: false
+        collectUserIp: false,
+        beforeSend: function(data) {
+            data.metaData.sessionURL = LogRocket.sessionURL;
+            return data;
+        }
     };
 
     if (window.location.origin !== 'https://bulkpinner.github.io') {
@@ -55,6 +59,6 @@ if (window.navigator.userAgent.indexOf("MSIE") > 0 || !!navigator.userAgent.matc
 
     // Now that the error-capture.js file is loaded asynchronously, need to wait until the page has loaded before initialising
     window.addEventListener('load', () => {
-        window.bugsnagClient = bugsnag(bugsnagOptions)
+        window.bugsnagClient = bugsnag(bugsnagOptions);
     })
 }

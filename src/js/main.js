@@ -15,11 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+require("babel-polyfill");
 import Authorization from 'views/Authorization';
 import Application from 'views/Application';
 import API from 'services/API';
 import CustomEvent from 'services/CustomEvent';
-import LogRocket from 'logrocket';
 
 // If the user is using Internet Explorer, kindly let them know that their browser is out of date, and that they should update
 if (window.navigator.userAgent.indexOf("MSIE") > 0 || !!navigator.userAgent.match(/Trident\/7\./)) {
@@ -28,8 +28,6 @@ if (window.navigator.userAgent.indexOf("MSIE") > 0 || !!navigator.userAgent.matc
     document.querySelector('.modal-overlay').classList.add('ie-overlay');
     document.querySelector('.modal-overlay').querySelector('.internet-explorer-disabled').classList.remove('hidden');
 } else {
-    LogRocket.init('vki4ci/bulkpinner');
-
     // Create instances of application classes
     new Authorization();
     new Application();
@@ -46,11 +44,7 @@ if (window.navigator.userAgent.indexOf("MSIE") > 0 || !!navigator.userAgent.matc
         appVersion: '[[applicationVersion]]',
         releaseStage: 'production',
         notifyReleaseStages: ['production', 'staging'],
-        collectUserIp: false,
-        beforeSend: function(data) {
-            data.metaData.sessionURL = LogRocket.sessionURL;
-            return data;
-        }
+        collectUserIp: false
     };
 
     if (window.location.origin !== 'https://bulkpinner.github.io') {

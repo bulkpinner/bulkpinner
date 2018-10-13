@@ -78,6 +78,10 @@
       }
     }
 
+    .paypal-me-link-container {
+      display: none;
+    }
+
     .description {
       display: block;
     }
@@ -147,6 +151,10 @@
   .authentication-container,
   .image-select-container {
     text-align: center;
+  }
+
+  .paypal-me-link-container {
+    display: block;
   }
 
   .description {

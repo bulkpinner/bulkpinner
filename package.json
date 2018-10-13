@@ -1,6 +1,6 @@
 {
   "name": "bulkpinner",
-  "version": "1.3.3",
+  "version": "1.4.0",
   "description": "An application that allows you to pin multiple images to your Pinterest boards at once",
   "main": "index.js",
   "repository": "https://github.com/bulkpinner/bulkpinner",
@@ -14,10 +14,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel-loader": "^7.0.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-es2015": "~6.9.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "balloon-css": "^0.5.0",
     "browser-sync": "^2.13.0",
@@ -67,6 +70,6 @@
     "yargs": "^4.7.1"
   },
   "dependencies": {
-    "logrocket": "^0.6.15"
+    "@babel/polyfill": "^7.0.0"
   }
 }

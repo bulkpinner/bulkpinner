@@ -16,17 +16,18 @@
  */
 
 /**
- * Utility classes
- *
- * !important is required as these are utility classes that need their properties applied if the class is in use
+ * Styling for the progress bar
  */
-
-.hidden {
-  display: none !important;
-}
-
-.invisible {
-  opacity: 0 !important;
-  transition: opacity ease 800ms !important;
-  will-change: opacity;
+.progress-bar {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  background-color: $colour-soft-white;
+  height: 3px;
+  width: 0;
+  opacity: 1;
+  transition: width 800ms ease 0s, opacity ease 200ms;
+  will-change: width, opacity;
+  box-shadow: 0 0 3px $colour-soft-white, 0 0 2px $colour-soft-white;
 }

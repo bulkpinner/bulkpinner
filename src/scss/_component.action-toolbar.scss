@@ -23,6 +23,7 @@
   background: $colour-soft-white;
   padding: 30px 0 0;
   z-index: 99;
+  border-top: 3px solid transparent; // This will allow the progress bar to be visible
 
   &.sticky {
     @media (min-width: $mobileBreakpoint) {
@@ -32,6 +33,7 @@
       left: 0;
       right: 0;
       z-index: 999;
+      border-top: 3px solid #BD081C; // This will allow the progress bar to be visible
     }
   }
 

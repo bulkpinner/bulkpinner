@@ -1,3 +1,13 @@
+# 1.4
+
+Added a progress indicator
+
+Updated position of Keyboard shortcuts available link
+
+Uninstalled LogRocket
+
+Moved the Support Development link
+
 # 1.3.3
 
 Installed LogRocket in order to better track errors

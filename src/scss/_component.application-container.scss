@@ -55,9 +55,11 @@
     }
 
     .keyboard-shortcuts-container {
-      position: absolute;
-      right: 0;
+      position: sticky;
       bottom: 0;
+      background-color: $colour-soft-white;
+      padding: 10px;
+      display: inline-block;
 
       @media (max-width: $mobileBreakpoint - 1) {
         display: none;

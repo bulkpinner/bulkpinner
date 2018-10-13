@@ -15,27 +15,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-a:not(.no-style) {
-  &,
-  &:focus,
-  &:hover,
-  &:active {
-    text-decoration: none;
-    color: $colour-pinterest-red;
-    border-bottom: 1px solid transparent;
-    transition: border-bottom 150ms linear;
+/**
+ * Styling for the PayPal.me link (including logo)
+ */
 
-    &.invert {
-      color: $colour-white;
-    }
+.paypal-me-link-container {
+  padding-top: 5px;
+  font-size: 0.7em;
+  line-height: 1.2em;
+
+  .paypal-me-link {
+    display: flex;
+    align-items: center;
   }
 
-  &:hover,
-  &:focus {
-    border-bottom: 1px solid $colour-pinterest-red;
-
-    &.invert {
-      border-bottom-color: $colour-white;
-    }
+  .paypal-logo {
+    max-height: 15px;
+    margin-left: 5px;
   }
 }

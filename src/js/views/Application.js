@@ -23,6 +23,7 @@ import Mousetrap from 'mousetrap';
 import debounce from 'debounce';
 import Analytics from 'services/Analytics';
 import Sidebar from 'views/Sidebar';
+import ProgressBar from 'views/ProgressBar';
 
 /**
  * Class Application
@@ -522,14 +523,19 @@ export default class Application {
      * @returns {null}
      */
     createPins() {
-        for (let pinPreview of this.pinPreviews) {
+        // Determine how many PinPreviews haven't been pinned yet - for use with ProgressBar
+        const unpinnedCount = this.pinPreviews.reduce((acc, pinPreview) => pinPreview.instance.dataset.pinned ? acc : acc + 1, 0);
+        const progressBar = new ProgressBar(unpinnedCount);
+
+        progressBar.start();
+        this.pinPreviews.forEach((pinPreview) => {
             // Skip any images that have already been pinned in this session
             if (pinPreview.instance.dataset.pinned) {
-                continue;
+                return;
             }
 
-            pinPreview.createPin();
-        }
+            pinPreview.createPin(progressBar);
+        });
     }
 
     /**
@@ -585,10 +591,10 @@ export default class Application {
         const noteField = this.pinPreviews[0].instance.querySelector("#note").value;
         const linkField = this.pinPreviews[0].instance.querySelector(".link").value;
 
-        for (let pinPreview of this.pinPreviews) {
+        this.pinPreviews.forEach((pinPreview) => {
             pinPreview.setNote(noteField);
             pinPreview.setLink(linkField);
-        }
+        });
     }
 
     /**

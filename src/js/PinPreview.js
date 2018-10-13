@@ -165,9 +165,11 @@ export default class PinPreview {
     /**
      * Send request to Pinterest to pin this image
      *
+     * @param {ProgressBar} progressBar A progress bar instance
+     *
      * @returns {null}
      */
-    createPin() {
+    createPin(progressBar) {
         const imageData = this.instance.querySelector('.preview-image').src;
         const note      = this.instance.querySelector(".note").value;
         const board     = this.instance.querySelector(".board-names").value;
@@ -189,6 +191,7 @@ export default class PinPreview {
                     this.instance.dataset.pinned = true;
                     this.instance.classList.toggle('sending', false);
                     Analytics.PinCreated();
+                    progressBar.increment();
                 })
                 .catch(err => {
                     ErrorUtil.Log(new Error('Create Pin promise rejected'), {

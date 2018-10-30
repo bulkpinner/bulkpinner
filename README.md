@@ -12,7 +12,7 @@ Check out how much faster uploading just 10 images is!
 
 ## How to Use
 
-1. Visit the application website (https://bulkpinner.github.io/site/)
+1. Visit the application website (https://bulkpinner.app)
 2. Authorize the application to read/write to your Pinterest
 3. Choose images you wish to pin
 4. Fill out the details for the images that are about to be pinned

@@ -31,12 +31,8 @@ export default class ErrorUtil {
      * @returns {null}
      */
     static Log(error, options) {
-        if (window.location.origin === 'https://bulkpinner.github.io') {
-            bugsnagClient.notify(error, options);
-        } else {
-            console.error(error);
-            console.error(options);
-        }
+        bugsnagClient.metaData = options;
+        bugsnagClient.notify(error);
     }
 
 }

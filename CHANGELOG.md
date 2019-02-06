@@ -1,3 +1,7 @@
+# 1.4.1
+
+Improved error handling and reporting
+
 # 1.4
 
 Added a progress indicator

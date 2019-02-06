@@ -176,8 +176,10 @@ export default class PinPreview {
         const link      = this.instance.querySelector(".link").value;
 
         this.instance.classList.toggle('sending', true);
+
+        // Remove any previous error that might be displaying
         if (typeof this.instance.dataset.pinError !== 'undefined') {
-            delete this.instance.dataset.pinError; // Remove any previous error that might be displaying
+            delete this.instance.dataset.pinError;
         }
 
         try {
@@ -191,19 +193,26 @@ export default class PinPreview {
                     this.instance.dataset.pinned = true;
                     this.instance.classList.toggle('sending', false);
                     Analytics.PinCreated();
-                    progressBar.increment();
                 })
                 .catch(err => {
+                    this.instance.dataset.pinError = true;
+                    this.instance.classList.toggle('sending', false);
+
                     ErrorUtil.Log(new Error('Create Pin promise rejected'), {
-                        error: err,
+                        details: err,
                         severity: 'error'
                     });
+                })
+                .finally(() => {
+                    progressBar.increment();
                 });
         } catch (exception) {
+            this.instance.dataset.pinError = true;
+            this.instance.classList.toggle('sending', false);
+            progressBar.increment();
+
             ErrorUtil.Log(new Error('Exception thrown from CreatePin function'), {
-                metaData: {
-                    'details': exception
-                },
+                details: exception,
                 severity: 'error'
             });
         }

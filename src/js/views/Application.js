@@ -490,21 +490,21 @@ export default class Application {
         let tabIndex = 1;
 
         for (let i = 0 ; i < previews.length ; i++) {
-            let preview = previews[i];
-
+            const preview = previews[i];
+            const noteEl = preview.querySelector('.note');
             const noteContainer = preview.querySelector(".note-container");
             const note = noteContainer.querySelector(".note").value;
-
+            noteEl.classList.toggle('invalid', note === '');
+            
             if (note === '') {
-                let note = preview.querySelector('.note');
-                note.classList.toggle('invalid', true);
-                note.tabIndex = tabIndex;
+                noteEl.tabIndex = tabIndex;
+
                 if (tabIndex === 1) {
-                    note.focus();
+                    noteEl.focus();
                     noteContainer.dataset.balloon = noteContainer.dataset.tooltip;
 
                     // @todo: This needs to be cleaned up and removed from here. Also need to make sure it only triggers once
-                    note.addEventListener('blur', e => {
+                    noteEl.addEventListener('blur', e => {
                         noteContainer.removeAttribute('data-balloon');
                     });
                 }

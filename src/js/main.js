@@ -47,7 +47,8 @@ if (window.navigator.userAgent.indexOf("MSIE") > 0 || !!navigator.userAgent.matc
         collectUserIp: false
     };
 
-    if (window.location.origin !== 'https://bulkpinner.github.io') {
+    // If the URL doesn't contain the word 'bulkpinner', then it's likely the user is on development environment
+    if (window.location.origin.search('bulkpinner') < 0) {
         bugsnagOptions.releaseStage = 'developer';
     }
 

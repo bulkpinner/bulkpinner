@@ -1,0 +1,25 @@
+/**
+ * Styling for the disabled notice modal
+ */
+.modal-overlay--disabled-noticed {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.9);
+
+  .modal--disabled-noticed {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #EFEFEF;
+    width: 80vw;
+    padding: 40px;
+  }
+
+  p {
+    padding: 10px 0;
+  }
+}

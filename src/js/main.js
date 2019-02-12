@@ -29,15 +29,15 @@ if (window.navigator.userAgent.indexOf("MSIE") > 0 || !!navigator.userAgent.matc
     document.querySelector('.modal-overlay').querySelector('.internet-explorer-disabled').classList.remove('hidden');
 } else {
     // Create instances of application classes
-    new Authorization();
-    new Application();
+    // new Authorization();
+    // new Application();
 
     // Determine if used is logged in and publish appropriate status
-    if (!API.IsAuthenticated()) {
-        CustomEvent.trigger('user-not-authenticated');
-    } else {
-        CustomEvent.trigger('user-authenticated');
-    }
+    // if (!API.IsAuthenticated()) {
+    //     CustomEvent.trigger('user-not-authenticated');
+    // } else {
+    //     CustomEvent.trigger('user-authenticated');
+    // }
 
     const bugsnagOptions = {
         apiKey: '856ea8cf87049704dbad28042ef0aa16',
